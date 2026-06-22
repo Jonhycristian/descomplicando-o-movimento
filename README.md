@@ -78,8 +78,9 @@ Como o projeto é estático (HTML/CSS/JS puros), não é necessária nenhuma bui
 
 ## 👨‍💻 Autor
 
-- **Desenvolvido por:** Adrian Farias e Lucas Nunes (e time de dev).
-- **Links:** [Instagram](https://www.instagram.com/descomplicando_omovimento)
+- **Desenvolvido por:** Jonathan Oliveira
+- **Cliente:** Descomplicando o Movimento (Adrian Farias e Lucas Nunes)
+- **Links do Projeto:** [Instagram](https://www.instagram.com/descomplicando_omovimento)
 
 ## 📄 Licença
 
