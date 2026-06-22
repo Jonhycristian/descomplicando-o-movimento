@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+    <title>Planilhas - Descomplicando o Movimento</title>
+    
+    <meta property="og:title" content="Planilhas de Treino - Descomplicando o Movimento">
+    <meta property="og:description" content="Treine com método, vídeos explicativos e base científica.">
+    <meta property="og:url" content="https://descomplicandoomovimento.netlify.app/planilhas.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" itemprop="image" content="https://descomplicandoomovimento.netlify.app/assets/logo.jpeg">
+    <meta property="og:image:secure_url" content="https://descomplicandoomovimento.netlify.app/assets/logo.jpeg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="600">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           1. VARIÁVEIS E RESET
+           ========================================= */
+        :root {
+            --color-black: #030303; 
+            --color-gray-dark: #0f0f0f;
+            --color-gray-medium: #1a1a1a;
+            --color-gray-border: #333333;
+            --color-white: #FFFFFF;
+            --color-text-muted: #b0b0b0;
+            --color-red: #E50914;
+            --color-red-dark: #b00610;
+            --color-red-glow: rgba(229, 9, 20, 0.6);
+            --color-gold: #FFD700;
+            --color-whatsapp: #25D366;
+            --font-main: 'Montserrat', sans-serif;
+            --header-height-desktop: 90px;
+            --header-height-mobile: 80px; 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
+        html { scroll-behavior: smooth; }
+        
+        body { 
+            font-family: var(--font-main); 
+            background-color: var(--color-black); 
+            color: var(--color-white); 
+            line-height: 1.6; 
+            overflow-x: hidden; 
+            background-image: radial-gradient(circle at 50% 0%, rgba(130, 5, 12, 0.25) 0%, var(--color-black) 65%); 
+            background-attachment: fixed;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        body.modal-open { overflow: hidden; }
+
+        /* =========================================
+           2. TIPOGRAFIA E CONTAINER
+           ========================================= */
+        h1, h2, h3, h4 { font-weight: 800; color: var(--color-white); line-height: 1.2; letter-spacing: -0.5px; }
+        h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 1.5rem; text-transform: uppercase; text-shadow: 0 10px 30px rgba(0,0,0,0.9); }
+        h1 span { color: var(--color-red); display: block; margin-top: 10px; font-size: 0.5em; letter-spacing: 2px;}
+        h2 { font-size: clamp(2rem, 4vw, 3rem); text-align: center; margin-bottom: 60px; position: relative; padding-bottom: 20px; width: 100%; }
+        h2::after { content: ''; display: block; width: 60px; height: 4px; background: var(--color-red); position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); border-radius: 2px; box-shadow: 0 0 15px var(--color-red-glow); }
+        h2.no-line::after { display: none; }
+        h3 { font-size: 1.6rem; margin-bottom: 10px; font-weight: 700; }
+        p { color: var(--color-text-muted); margin-bottom: 1rem; font-weight: 400; font-size: 1.05rem; }
+        a { text-decoration: none; color: inherit; transition: 0.3s ease; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+        .text-center { text-align: center; }
+
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; width: 100%; }
+        section { padding: 100px 0; position: relative; }
+
+        /* =========================================
+           3. ANIMAÇÕES E BOTÕES
+           ========================================= */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+        @keyframes pulse-border { 0% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(229, 9, 20, 0); } 100% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0); } }
+
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 35px; border-radius: 50px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; cursor: pointer; border: none; font-size: 0.85rem; gap: 10px; position: relative; z-index: 20; color: #fff; width: auto; max-width: fit-content; white-space: nowrap; }
+        .btn-primary { background: linear-gradient(135deg, var(--color-red) 0%, var(--color-red-dark) 100%); box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(229, 9, 20, 0.6); }
+        
+        .btn-final { padding: 20px 50px; font-size: 1.1rem; white-space: normal; text-align: center; line-height: 1.4; }
+
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background-color: var(--color-whatsapp); color: #FFF; width: 65px; height: 65px; border-radius: 50%; text-align: center; font-size: 32px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); z-index: 999999; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; animation: pulse-green 2s infinite; }
+        .whatsapp-float:hover { background-color: #128C7E; transform: scale(1.1) translateY(-5px); color: #FFF; }
+        .whatsapp-float::before { content: "Fale Conosco"; position: absolute; right: 75px; background: #fff; color: #333; padding: 8px 15px; border-radius: 20px; font-size: 14px; font-weight: 700; white-space: nowrap; opacity: 0; visibility: hidden; transition: 0.3s; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); pointer-events: none; }
+        .whatsapp-float:hover::before { opacity: 1; visibility: visible; right: 80px; }
+
+        /* =========================================
+           4. CABEÇALHO E MENU
+           ========================================= */
+        .site-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 2000; height: var(--header-height-desktop); background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%); transition: all 0.4s ease; display: flex; align-items: center; }
+        .site-header.scrolled, .site-header.menu-open-bg { background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.05); height: 80px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .main-nav-desktop { display: flex; justify-content: space-between; align-items: center; width: 100%; height: 100%; }
+        .nav-left, .nav-right { display: flex; align-items: center; flex: 1; }
+        .nav-right { justify-content: flex-end; gap: 20px; }
+        .logo { flex: 0 0 auto; margin: 0 30px; position: relative; z-index: 2005; }
+        .logo img { height: 55px; transition: 0.3s; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+        .site-header.scrolled .logo img { height: 45px; }
+        
+        .nav-menu { display: flex; gap: 30px; list-style: none; align-items: center; }
+        .nav-menu li a:not(.btn) { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; position: relative; opacity: 0.9; padding: 5px 0; color: var(--color-white); letter-spacing: 0.5px; }
+        .nav-menu li a:not(.btn):hover { opacity: 1; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        .nav-menu li a:not(.btn):after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0%; height: 2px; background: var(--color-red); transition: 0.3s; box-shadow: 0 0 5px var(--color-red); }
+        .nav-menu li a:not(.btn):hover:after { width: 100%; }
+
+        .main-nav-mobile { display: none; }
+        .nav-menu-mobile { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #000; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 30px; transform: translateX(100%); transition: 0.4s cubic-bezier(0.77, 0, 0.175, 1); z-index: 1999; padding: 80px 20px 20px 20px; list-style: none; }
+        .nav-menu-mobile.active { transform: translateX(0); }
+        
+        .nav-menu-mobile li a:not(.btn) { font-size: 1.5rem; font-weight: 700; color: #fff; -webkit-tap-highlight-color: transparent; }
+        .nav-menu-mobile li a:not(.btn):hover { color: var(--color-red); }
+        .nav-menu-mobile li a.btn { font-size: 1rem; width: 100%; max-width: 280px; padding: 14px 20px; white-space: nowrap; }
+
+        .menu-toggle { display: none; background: none; border: none; cursor: pointer; z-index: 2002; padding: 10px; }
+        .menu-toggle span { display: block; width: 30px; height: 2px; background: #fff; margin: 6px 0; transition: 0.3s; }
+        .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); background: var(--color-red); }
+        .menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); background: var(--color-red); }
+
+        /* =========================================
+           5. ESTILOS ESPECÍFICOS PLANILHAS E BALÃO
+           ========================================= */
+        .hero-global { 
+            position: relative;
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            padding-top: 100px; 
+            padding-bottom: 50px; 
+        }
+
+        .hero-badge-wrapper {
+            position: absolute;
+            top: 120px; 
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 10;
+        }
+        
+        .urgency-badge { 
+            display: inline-block; 
+            background: rgba(229, 9, 20, 0.15); 
+            color: var(--color-red); 
+            border: 1px solid var(--color-red); 
+            padding: 6px 18px; 
+            border-radius: 30px; 
+            font-size: 0.8rem; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            animation: pulse-border 2s infinite; 
+            white-space: nowrap;
+            margin: 0 auto;
+        }
+
+        .hero-subtitle { font-size: 1.1rem; color: #bbb; max-width: 700px; margin: 20px auto 40px auto; }
+        
+        .hero-video-wrapper-fixed { max-width: 320px; margin: 0 auto; display: block; cursor: pointer; border-radius: 20px; overflow: hidden; border: 2px solid rgba(229,9,20,0.5); position: relative; }
+        .video-wrapper.vertical { padding-bottom: 177.77%; width: 100%; position: relative; background: #000; }
+        .video-wrapper.vertical video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+        .video-overlay-fixed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.2); z-index: 2; display: block; }
+        .play-btn-fixed { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; border-radius: 50%; background: rgba(229,9,20,0.9); display: flex; align-items: center; justify-content: center; padding-left: 6px; box-shadow: 0 0 20px rgba(229,9,20,0.8); transition: transform 0.3s; }
+        .hero-video-wrapper-fixed:hover .play-btn-fixed { transform: translate(-50%, -50%) scale(1.15); background: var(--color-red); }
+        .txt-toque-fixed { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); width: 100%; text-align: center; font-size: 1rem; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 2px 10px rgba(0,0,0,0.9); }
+
+        /* Estilos dos Cards das Planilhas */
+        .target-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 30px; 
+            margin-top: 40px; 
+        }
+        
+        .planilha-card {
+            background: rgba(20, 20, 20, 0.6);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid var(--color-gray-border);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .planilha-card:hover {
+            border-color: var(--color-red);
+            box-shadow: 0 15px 35px rgba(229, 9, 20, 0.2);
+            transform: translateY(-8px);
+        }
+
+        .planilha-img-wrapper {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .imagem-planilha { 
+            width: 100%; 
+            height: auto;
+            border-radius: 12px;
+            transition: transform 0.5s ease; 
+            display: block; 
+        }
+        
+        .planilha-card:hover .imagem-planilha { 
+            transform: scale(1.05); 
+        }
+
+        /* Botão de Compra Centralizado */
+        .btn-comprar {
+            width: auto;
+            min-width: 80%;
+            align-self: center;
+            margin-top: auto;
+            padding: 16px 20px;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        .check-list { list-style: none; padding: 0; margin: 0; }
+        .check-list li { margin-bottom: 15px; display: flex; align-items: center; gap: 15px; text-align: left; color: #ccc; font-size: 1.1rem;}
+        .check-list li i { color: var(--color-red); font-size: 1.2rem;}
+        .passo-a-passo { max-width: 600px; margin: 0 auto 30px auto; display: flex; flex-direction: column; gap: 15px; }
+        .passo { background: #111; padding: 20px; border-radius: 8px; font-size: 1.2rem; font-weight: 600; border-left: 5px solid var(--color-red); }
+        .valor-unico { color: var(--color-red); font-size: 2.5rem; font-weight: 900; margin-top: 30px;}
+        .cta-final { text-align: center; padding: 120px 20px; background: linear-gradient(180deg, rgba(0,0,0,0) 0%, #1a0202 100%); border-top: 1px solid #222; }
+
+        .slider-container { max-width: 900px; margin: 60px auto 0; padding: 60px 50px; background: rgba(20, 20, 20, 0.8); border-radius: 20px; border: 1px solid var(--color-gray-border); text-align: center; position: relative; backdrop-filter: blur(10px); }
+        .testimonial-slider { position: relative; width: 100%; min-height: 250px; }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; opacity: 0; visibility: hidden; transition: all 0.5s ease; transform: translateX(20px); padding: 20px; }
+        .slide.active-slide { opacity: 1; visibility: visible; position: relative; transform: translateX(0); }
+        .slide p { font-size: 1.2rem; font-style: italic; margin-bottom: 10px; color: #e0e0e0; }
+        .slide i.fa-quote-left { color: var(--color-red); font-size: 2rem; margin-bottom: 20px; text-shadow: 0 0 10px var(--color-red-glow); }
+        .stars { color: var(--color-gold); margin-bottom: 25px; font-size: 1.1rem; }
+        .profile-name { font-weight: 700; color: #fff; font-size: 1.1rem; display: block; margin-top: 15px;}
+        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.05); width: 45px; height: 45px; border-radius: 50%; border: none; color: #fff; font-size: 1.2rem; cursor: pointer; transition: 0.3s; z-index: 10; display: flex; align-items: center; justify-content: center;}
+        .slider-btn:hover { background: var(--color-red); box-shadow: 0 0 15px var(--color-red-glow);}
+        .prev-btn { left: -25px; } .next-btn { right: -25px; }
+
+        /* =========================================
+           6. FOOTER
+           ========================================= */
+        footer { background: #020202; padding: 80px 0 30px; border-top: 1px solid #151515; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 60px; margin-bottom: 60px; }
+        .footer-col h4 { margin-bottom: 25px; font-size: 1.1rem; color: #fff; position: relative; display: inline-block; }
+        .footer-col h4::after { content: ''; display: block; width: 30px; height: 2px; background: var(--color-red); margin-top: 8px; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col a { color: #888; transition: 0.3s; font-size: 0.85rem; display: inline-block; }
+        .footer-col a:hover { color: var(--color-red); padding-left: 5px; }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid #111; color: #444; font-size: 0.8rem; }
+        .contact-info-item { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; color: #b0b0b0; font-size: 0.85rem; line-height: 1.4; }
+        .contact-info-item i { color: var(--color-red); font-size: 1.1rem; flex-shrink: 0; }
+        .contact-info-item .email-text { font-size: clamp(0.6rem, 4vw, 0.85rem); white-space: nowrap; }
+        .contact-info-item a { display: flex; align-items: center; gap: 10px; margin: 0; }
+        .contact-info-item a:hover { padding-left: 0; }
+        .social-links { list-style: none; padding: 0; margin: 0; }
+        .social-links li { margin-bottom: 12px; }
+        .social-links a { display: flex; align-items: center; gap: 8px; color: #b0b0b0; font-size: 0.85rem; transition: transform 0.3s ease, color 0.3s ease; }
+        .social-links a i { color: var(--color-red); font-size: 1.2rem; }
+        .social-links a:hover { color: var(--color-white); transform: translateX(5px); padding-left: 0; }
+
+        /* =========================================
+           7. MODAL DE VÍDEO E TRIAGEM
+           ========================================= */
+        .video-modal, .triage-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; height: 100dvh; background: rgba(0,0,0,0.98); backdrop-filter: blur(10px); z-index: 20000; opacity: 0; transition: opacity 0.5s ease; overflow-y: auto; }
+        .video-modal.active, .triage-modal.active { display: block; }
+        .video-modal.show, .triage-modal.show { opacity: 1; }
+        
+        .modal-content-wrapper { position: relative; width: 100%; min-height: 100%; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
+        
+        .video-box-relative { position: relative; width: 100%; max-width: 420px; height: 85vh; max-height: 800px; display: flex; justify-content: center; align-items: center; margin: auto; }
+        .modal-video-container { width: 100%; height: 100%; background: #000; border: 4px solid var(--color-red); border-radius: 30px; overflow: hidden; position: relative; box-shadow: 0 0 40px rgba(229, 9, 20, 0.6), 0 0 100px rgba(229, 9, 20, 0.2); transform: scale(0.9); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .video-modal.show .modal-video-container { transform: scale(1); }
+        .modal-video-container video { width: 100%; height: 100%; object-fit: cover; }
+        
+        .close-video-btn { position: absolute; top: -15px; right: -15px; color: #fff; font-size: 1.5rem; cursor: pointer; background: var(--color-red); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; z-index: 20001; box-shadow: 0 5px 15px rgba(0,0,0,0.6); border: 3px solid #111; }
+        .close-video-btn:hover { background: #fff; color: var(--color-red); transform: rotate(90deg) scale(1.1); border-color: var(--color-red);}
+
+        .close-btn { position: absolute; top: 15px; right: 15px; color: #fff; font-size: 1.5rem; cursor: pointer; background: rgba(255,255,255,0.05); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; z-index: 20001; }
+        .close-btn:hover { background: var(--color-red); transform: rotate(90deg); }
+
+        .triage-form-container { background: linear-gradient(145deg, #121212, #0a0a0a); padding: 40px 35px; border-radius: 24px; max-width: 500px; width: 100%; border: 1px solid rgba(229, 9, 20, 0.2); box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(229, 9, 20, 0.15); position: relative; z-index: 20001; margin: auto; }
+        
+        .progress-container { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-bottom: 30px; overflow: hidden;}
+        .progress-bar { height: 100%; width: 0%; background: var(--color-red); transition: width 0.4s ease; border-radius: 10px;}
+
+        .triage-header { text-align: left; margin-bottom: 20px; }
+        .triage-header h3 { font-size: 1.5rem; color: var(--color-white); margin-bottom: 5px; }
+        .triage-header p { font-size: 0.85rem; color: var(--color-text-muted); }
+        
+        .form-step { display: none; opacity: 0; }
+        .form-step.active { display: block; animation: fadeInStep 0.5s ease forwards; }
+        @keyframes fadeInStep { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+
+        .triage-form-group { margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px; }
+        .triage-form-group > label { font-size: 1.1rem; font-weight: 700; color: var(--color-white); line-height: 1.4; margin-bottom: 5px; }
+        
+        .triage-form-group input[type="text"] { width: 100%; padding: 16px 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.3); color: #fff; font-family: var(--font-main); font-size: 1.1rem; transition: all 0.3s ease; }
+        .triage-form-group input[type="text"]:focus { border-color: var(--color-red); background: rgba(255,255,255,0.05); box-shadow: 0 0 15px rgba(229, 9, 20, 0.2); outline: none; }
+        .triage-form-group input[type="text"]::placeholder { color: rgba(255,255,255,0.2); font-size: 1rem;}
+
+        .custom-radio-group { display: flex; flex-direction: column; gap: 10px; }
+        .custom-radio-group input[type="radio"] { display: none; }
+        .custom-radio-group label { display: block; padding: 16px 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.3); color: #fff; font-family: var(--font-main); font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; text-align: left; }
+        .custom-radio-group label:hover { background: rgba(255,255,255,0.05); border-color: rgba(229, 9, 20, 0.5); }
+        .custom-radio-group input[type="radio"]:checked + label { background: rgba(229, 9, 20, 0.15); border-color: var(--color-red); box-shadow: 0 0 15px rgba(229, 9, 20, 0.2); font-weight: 600; }
+
+        .triage-navigation { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px;}
+        .btn-prev { background: transparent; color: #888; border: none; font-family: var(--font-main); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s; font-size: 0.85rem; padding: 10px 0;}
+        .btn-prev:hover { color: #fff; }
+        .btn-next, .triage-submit-btn { padding: 12px 30px; font-size: 0.9rem; }
+
+        .toast-container { position: fixed; top: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; gap: 10px; }
+        .toast { background: var(--color-red); color: #fff; padding: 15px 25px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); font-weight: 600; font-size: 0.9rem; transform: translateX(120%); transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); display: flex; align-items: center; gap: 10px; }
+        .toast.show { transform: translateX(0); }
+
+        /* =========================================
+           8. RESPONSIVIDADE
+           ========================================= */
+        @media (min-width: 1024px) { .footer-col:last-child { padding-left: 60px; } }
+        @media (max-width: 1024px) {
+            .main-nav-desktop { display: none; }
+            .main-nav-mobile { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+            .menu-toggle { display: block; }
+        }
+        @media (max-width: 768px) {
+            .site-header { height: var(--header-height-mobile); padding: 0 15px; }
+            .logo img { height: 40px; }
+            h1 { font-size: 2.2rem; }
+            
+            .hero-badge-wrapper { top: 95px; }
+            .urgency-badge { font-size: 0.65rem; padding: 5px 12px; }
+
+            .btn { width: 100%; max-width: 100%; }
+            .btn-final { padding: 15px 20px; font-size: 1rem; }
+            
+            .slider-container { padding: 40px 20px; }
+            .prev-btn { left: -10px; } .next-btn { right: -10px; }
+            .video-box-relative { max-width: 90vw; height: 80vh; }
+            .modal-video-container { border-radius: 20px; border-width: 3px; } 
+            .close-video-btn { top: -10px; right: -10px; width: 40px; height: 40px; font-size: 1.2rem; } 
+            
+            .whatsapp-float { width: 55px; height: 55px; font-size: 28px; bottom: 20px; right: 20px; }
+            .whatsapp-float::before { display: none; }
+            
+            .triage-form-container { padding: 30px 20px; margin-top: 15px; margin-bottom: 15px; }
+            .triage-form-group label { font-size: 1rem; }
+            
+            .nav-menu-mobile li a.btn { font-size: 0.9rem; padding: 14px 20px; width: 100%; max-width: 280px; white-space: nowrap; }
+        }
+    </style>
+
+    <!-- SEO AVANÇADO E SCHEMA.ORG -->
+    <meta name="robots" content="index, follow">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Descomplicando o Movimento">
+    <meta name="twitter:description" content="Treino com base em ciência e biomecânica.">
+    <meta name="twitter:image" content="https://descomplicandoomovimento.netlify.app/assets/logo.jpeg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HealthAndBeautyBusiness",
+      "name": "Descomplicando o Movimento",
+      "image": "https://descomplicandoomovimento.netlify.app/assets/logo.jpeg",
+      "@id": "",
+      "url": "https://descomplicandoomovimento.netlify.app/",
+      "telephone": "",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "BR"
+      }
+    }
+    </script>
+</head>
+<body>
+
+    <header class="site-header" id="header">
+        <div class="container">
+            <nav class="main-nav-desktop">
+                <div class="nav-left">
+                    <ul class="nav-menu">
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="mentoria.html">Mentoria</a></li>
+                        <li><a href="consultoria.html">Consultoria</a></li>
+                        <li><a href="planilhas.html">Planilhas</a></li>
+                    </ul>
+                </div>
+                <div class="logo">
+                    <a href="index.html"><img src="assets/logo.png" alt="Logo Descomplicando o Movimento" loading="lazy"></a>
+                </div>
+                <div class="nav-right">
+                    <ul class="nav-menu">
+                        <li><a href="https://www.instagram.com/descomplicando_omovimento" target="_blank">Instagram</a></li>
+                    </ul>
+                    <a href="#" class="btn btn-primary whatsapp-triage-btn"><i class="fab fa-whatsapp"></i> Falar</a>
+                </div>
+            </nav>
+            <nav class="main-nav-mobile">
+                <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="Logo" loading="lazy"></a></div>
+                <button class="menu-toggle" aria-label="Abrir menu mobile" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+            </nav>
+        </div>
+        <ul class="nav-menu-mobile" aria-hidden="true">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="mentoria.html">Mentoria</a></li>
+            <li><a href="consultoria.html">Consultoria</a></li>
+            <li><a href="planilhas.html">Planilhas</a></li>
+            <li><a href="https://www.instagram.com/descomplicando_omovimento" target="_blank">Instagram</a></li>
+            <li><a href="#" class="btn btn-primary whatsapp-triage-btn" style="margin-top: 20px;">Falar com a equipe</a></li>
+        </ul>
+    </header>
+
+    <main>
+        <section class="hero-global" id="inicio">
+            <div class="container reveal active">
+                <h1>Planilhas de Treino com Método,<br><span>Vídeos Explicativos e Base Científica</span></h1>
+                <p class="hero-subtitle">Não é só uma lista de exercícios.<br>É direção técnica organizada.</p>
+                
+                <div class="hero-video-wrapper-fixed" id="open-video-modal">
+                    <div class="video-wrapper vertical">
+                        <video id="hero-bg-video" autoplay muted loop playsinline preload="metadata" poster="assets/planilha/capa-video.jpg">
+                            <source src="assets/planilha/video01.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-overlay-fixed">
+                            <div class="play-btn-fixed">
+                                <i class="fas fa-play" style="color: #fff;"></i>
+                            </div>
+                            <span class="txt-toque-fixed">Toque para ouvir</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center" style="margin-top: 40px;">
+                    <a href="#niveis" class="btn btn-primary">👉 Quero minha planilha por R$29,90</a>
+                </div>
+            </div>
+        </section>
+
+        <section style="background: transparent;" id="niveis">
+            <div class="container reveal">
+                <h2>Seu Treino Baseado no seu Nível!</h2>
+                
+                <h3 class="text-center" style="color: var(--color-gold); margin-top: 40px; margin-bottom: 30px;"><i class="fas fa-fist-raised"></i> MASCULINO</h3>
+                
+                <div class="target-grid">
+                    <div class="planilha-card">
+                        <a href="https://pay.hotmart.com/L104768731M" target="_blank" class="planilha-img-wrapper">
+                            <img src="assets/planilha/planilha-de-treinamento-para-homens-iniciantes.jpeg" alt="Planilha Masculina Iniciantes" class="imagem-planilha" loading="lazy">
+                        </a>
+                        <a href="https://pay.hotmart.com/L104768731M" target="_blank" class="btn btn-primary btn-comprar">Comprar Iniciante</a>
+                    </div>
+                    
+                    <div class="planilha-card">
+                        <a href="https://pay.hotmart.com/L104768731M" target="_blank" class="planilha-img-wrapper">
+                            <img src="assets/planilha/planilha-de-treinamento-para-homens-intermediarios.jpeg" alt="Planilha Masculina Intermediários" class="imagem-planilha" loading="lazy">
+                        </a>
+                        <a href="https://pay.hotmart.com/L104768731M" target="_blank" class="btn btn-primary btn-comprar">Comprar Intermediário</a>
+                    </div>
+
+                    <div class="planilha-card">
+                        <a href="https://pay.hotmart.com/L104768731M" target="_blank" class="planilha-img-wrapper">
+                            <img src="assets/planilha/planilha-de-treinamento-para-homens-avancados.jpeg" alt="Planilha Masculina Avançados" class="imagem-planilha" loading="lazy">
+                        </a>
+                        <a href="https://pay.hotmart.com/L104768731M" target="_blank" class="btn btn-primary btn-comprar">Comprar Avançado</a>
+                    </div>
+                </div>
+
+                <h3 class="text-center" style="color: var(--color-gold); margin-top: 70px; margin-bottom: 30px;"><i class="fas fa-running"></i> FEMININO</h3>
+                
+                <div class="target-grid">
+                    <div class="planilha-card">
+                        <a href="https://pay.hotmart.com/L104737639A" target="_blank" class="planilha-img-wrapper">
+                            <img src="assets/planilha/planilha-de-treinamento-para-mulheres-iniciantes.jpeg" alt="Planilha Feminina Iniciantes" class="imagem-planilha" loading="lazy">
+                        </a>
+                        <a href="https://pay.hotmart.com/L104737639A" target="_blank" class="btn btn-primary btn-comprar">Comprar Iniciante</a>
+                    </div>
+
+                    <div class="planilha-card">
+                        <a href="https://pay.hotmart.com/L104737639A" target="_blank" class="planilha-img-wrapper">
+                            <img src="assets/planilha/planilha-de-treinamento-para-mulheres-intermediarias.jpeg" alt="Planilha Feminina Intermediárias" class="imagem-planilha" loading="lazy">
+                        </a>
+                        <a href="https://pay.hotmart.com/L104737639A" target="_blank" class="btn btn-primary btn-comprar">Comprar Intermediária</a>
+                    </div>
+
+                    <div class="planilha-card">
+                        <a href="https://pay.hotmart.com/L104737639A" target="_blank" class="planilha-img-wrapper">
+                            <img src="assets/planilha/planilha-de-treinamento-para-mulheres-avancados.jpeg" alt="Planilha Feminina Avançadas" class="imagem-planilha" loading="lazy">
+                        </a>
+                        <a href="https://pay.hotmart.com/L104737639A" target="_blank" class="btn btn-primary btn-comprar">Comprar Avançada</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section>
+            <div class="container reveal">
+                <h2>O Que Você Recebe</h2>
+                <div style="max-width: 600px; margin: 0 auto; background: #0f0f0f; padding: 40px; border-radius: 15px; border: 1px solid #222;">
+                    <ul class="check-list">
+                        <li><i class="fas fa-check-circle"></i> Séries e repetições organizada</li>
+                        <li><i class="fas fa-check-circle"></i> Tempo de execução (cadência)</li>
+                        <li><i class="fas fa-check-circle"></i> Intervalo de descanso</li>
+                        <li><i class="fas fa-check-circle"></i> Observações técnicas</li>
+                        <li><i class="fas fa-check-circle"></i> Alongamentos incluídos</li>
+                        <li><i class="fas fa-check-circle"></i> Vídeos explicativos clicáveis</li>
+                        <li><i class="fas fa-check-circle"></i> Estrutura baseada em ciência</li>
+                    </ul>
+                </div>
+                <h3 class="text-center" style="margin-top: 40px; color: var(--color-red);">Você não depende de ninguém para entender o treino.</h3>
+            </div>
+        </section>
+
+        <section style="background: rgba(10, 10, 10, 0.5);">
+            <div class="container reveal">
+                <h2>Como Funciona</h2>
+                <div class="passo-a-passo">
+                    <div class="passo">1️⃣ Escolha a planilha ideal para o seu nível</div>
+                    <div class="passo">2️⃣ Realize o pagamento pela Hotmart</div>
+                    <div class="passo">3️⃣ Receba acesso imediato ao material no seu e-mail</div>
+                    <div class="passo">4️⃣ Comece a treinar com método e direção</div>
+                </div>
+                <div class="text-center">
+                    <p style="font-size: 1.2rem; margin-top: 20px;">Valor único:</p>
+                    <div class="valor-unico">R$ 29,90</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container reveal">
+                <h2>Depoimentos</h2>
+                <div class="slider-container">
+                    <div class="testimonial-slider">
+                        
+                        <div class="slide active-slide">
+                            <i class="fas fa-quote-left"></i>
+                            <p>“Os vídeos ajudam muito. Nunca mais fiquei perdido na academia.”</p>
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <span class="profile-name">— Rafael M.</span>
+                        </div>
+                        <div class="slide">
+                            <i class="fas fa-quote-left"></i>
+                            <p>“Treino organizado e fácil de seguir.”</p>
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <span class="profile-name">— Juliana S.</span>
+                        </div>
+                        <div class="slide">
+                            <i class="fas fa-quote-left"></i>
+                            <p>“Vale muito mais do que o preço.”</p>
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <span class="profile-name">— André L.</span>
+                        </div>
+                        <div class="slide">
+                            <i class="fas fa-quote-left"></i>
+                            <p>“Consegui evoluir mesmo treinando sozinho.”</p>
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <span class="profile-name">— Camila R.</span>
+                        </div>
+
+                    </div>
+                    <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section style="background: rgba(10, 10, 10, 0.5);">
+            <div class="container reveal text-center">
+                <h2 class="no-line" style="color: var(--color-gold);">BÔNUS EXCLUSIVO PARA ALUNOS</h2>
+                <p class="hero-subtitle">Conteúdo complementar para elevar seu nível de treino.</p>
+                
+                <div style="max-width: 700px; margin: 0 auto; background: #0f0f0f; padding: 40px; border-radius: 15px; border-top: 5px solid var(--color-gold);">
+                    <p style="text-align: left; margin-bottom: 20px;">Além da planilha, você recebe acesso aos nossos vídeos exclusivos com:</p>
+                    <ul class="check-list">
+                        <li><i class="fas fa-arrow-right" style="color: var(--color-gold);"></i> Técnicas avançadas de treinamento</li>
+                        <li><i class="fas fa-arrow-right" style="color: var(--color-gold);"></i> Estratégias de intensificação</li>
+                        <li><i class="fas fa-arrow-right" style="color: var(--color-gold);"></i> Explicações sobre posicionamento corporal</li>
+                        <li><i class="fas fa-arrow-right" style="color: var(--color-gold);"></i> Ajustes técnicos para melhorar ativação muscular</li>
+                    </ul>
+                    
+                    <h3 style="margin-top: 30px; color: var(--color-gold);">Você não aprende só o que fazer.<br>Você aprende como fazer da maneira correta.</h3>
+                    <p style="margin-top: 10px; font-weight: bold;">Acesso incluído sem custo adicional.</p>
+                </div>
+
+                <div style="margin-top: 40px;">
+                    <a href="#niveis" class="btn btn-primary" style="background: linear-gradient(135deg, #FFD700, #b8860b); color: #000; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);">Quero garantir meu acesso</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-final reveal">
+            <div class="container">
+                <h2>Treine com método.<br>Entenda o que está fazendo.<br>Evolua com direção.</h2>
+                <br>
+                <a href="#niveis" class="btn btn-primary btn-final">👉 Quero minha planilha por R$29,90</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="assets/logo.png" alt="Logo" loading="lazy" style="width:150px; opacity: 0.9;">
+                    <p style="margin-top: 15px; font-size: 0.9rem;">Descomplicando o Movimento © 2025<br>Todos os direitos reservados.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="mentoria.html">Mentoria</a></li>
+                        <li><a href="consultoria.html">Consultoria</a></li>
+                        <li><a href="planilhas.html">Planilhas</a></li> 
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contato</h4>
+                    <div class="contact-info-item">
+                        <i class="fas fa-envelope"></i> 
+                        <span class="email-text">descomplicandoomovimento@gmail.com</span>
+                    </div>
+                    <div class="contact-info-item">
+                        <a href="https://wa.me/5547999382595" target="_blank">
+                            <i class="fab fa-whatsapp"></i> WhatsApp: (47) 99938-2595
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Siga-nos</h4>
+                    <ul class="social-links">
+                        <li>
+                            <a href="https://www.instagram.com/descomplicando_omovimento" target="_blank">
+                                <i class="fab fa-instagram"></i> @descomplicando_omovimento
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="video-modal" class="video-modal">
+        <div class="modal-content-wrapper">
+            <div class="video-box-relative">
+                <span class="close-video-btn" id="close-video-modal-btn"><i class="fas fa-times"></i></span>
+                <div class="modal-video-container">
+                    <video src="assets/planilha/video01.mp4" id="modal-video-player" loop playsinline controls></video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="triage-modal" class="triage-modal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-content-wrapper">
+            <div class="triage-form-container">
+                <span class="close-btn" aria-label="Fechar" id="close-triage-btn">&times;</span>
+                
+                <div class="triage-header">
+                    <h3>Dúvidas sobre o treino?</h3>
+                    <p>Responda para te ajudarmos a escolher o melhor caminho.</p>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                
+                <form id="triage-form">
+                    
+                    <div class="form-step active">
+                        <div class="triage-form-group">
+                            <label for="triage-nome">Como podemos te chamar?</label>
+                            <input type="text" id="triage-nome" placeholder="Digite seu nome completo" required>
+                        </div>
+                    </div>
+
+                    <div class="form-step">
+                        <div class="triage-form-group">
+                            <label>Qual é seu maior objetivo hoje?</label>
+                            <div class="custom-radio-group">
+                                <input type="radio" id="obj1" name="triage-objetivo" value="Hipertrofia" required>
+                                <label for="obj1">Hipertrofia (Ganho de Massa)</label>
+                                
+                                <input type="radio" id="obj2" name="triage-objetivo" value="Emagrecimento">
+                                <label for="obj2">Emagrecimento</label>
+                                
+                                <input type="radio" id="obj3" name="triage-objetivo" value="Condicionamento Físico">
+                                <label for="obj3">Condicionamento Físico</label>
+                                
+                                <input type="radio" id="obj4" name="triage-objetivo" value="Saúde e Qualidade de Vida">
+                                <label for="obj4">Saúde e Qualidade de Vida</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-step">
+                        <div class="triage-form-group">
+                            <label>Como você avalia seu nível de treino?</label>
+                            <div class="custom-radio-group">
+                                <input type="radio" id="niv-iniciante" name="triage-nivel" value="Iniciante" required>
+                                <label for="niv-iniciante">Iniciante (Começando agora)</label>
+                                
+                                <input type="radio" id="niv-intermediario" name="triage-nivel" value="Intermediário">
+                                <label for="niv-intermediario">Intermediário (Já treino há um tempo)</label>
+                                
+                                <input type="radio" id="niv-avancado" name="triage-nivel" value="Avançado">
+                                <label for="niv-avancado">Avançado (Treino pesado e constante)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-step">
+                        <div class="triage-form-group">
+                            <label>Onde você pretende treinar?</label>
+                            <div class="custom-radio-group">
+                                <input type="radio" id="loc-acad" name="triage-local" value="Academia" required>
+                                <label for="loc-acad">Academia</label>
+                                
+                                <input type="radio" id="loc-casa" name="triage-local" value="Casa">
+                                <label for="loc-casa">Em Casa</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-step">
+                        <div class="triage-form-group">
+                            <label>Quantos dias por semana você vai treinar?</label>
+                            <div class="custom-radio-group">
+                                <input type="radio" id="dias2" name="triage-dias" value="2 dias" required>
+                                <label for="dias2">2 dias</label>
+                                
+                                <input type="radio" id="dias3" name="triage-dias" value="3 dias">
+                                <label for="dias3">3 dias</label>
+                                
+                                <input type="radio" id="dias4" name="triage-dias" value="4 dias">
+                                <label for="dias4">4 dias</label>
+                                
+                                <input type="radio" id="dias5" name="triage-dias" value="5 dias">
+                                <label for="dias5">5 dias</label>
+                                
+                                <input type="radio" id="dias6" name="triage-dias" value="6 dias">
+                                <label for="dias6">6 dias</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-step">
+                        <div class="triage-form-group">
+                            <label for="triage-limitacao">Possui alguma limitação ou lesão?</label>
+                            <input type="text" id="triage-limitacao" placeholder="Ex: Dor no joelho, hérnia, ou digite 'Não'" required>
+                        </div>
+                    </div>
+
+                    <div class="triage-navigation">
+                        <button type="button" class="btn-prev" id="btn-prev" style="display: none;"><i class="fas fa-arrow-left"></i> Voltar</button>
+                        <button type="button" class="btn btn-primary btn-next" id="btn-next">Próximo <i class="fas fa-arrow-right"></i></button>
+                        <button type="submit" class="btn btn-primary triage-submit-btn" id="btn-submit" style="display: none;">Receber link <i class="fab fa-whatsapp"></i></button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="whatsapp-float whatsapp-triage-btn">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div class="toast-container" id="toast-container"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // 1. SCROLL REVEAL
+            const reveals = document.querySelectorAll('.reveal');
+            const header = document.getElementById('header');
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+                reveals.forEach((reveal) => { 
+                    if (reveal.getBoundingClientRect().top < windowHeight - 50) reveal.classList.add('active'); 
+                });
+            };
+            window.addEventListener('scroll', () => {
+                revealOnScroll();
+                const isMenuOpen = header.classList.contains('menu-open-bg');
+                if (window.scrollY > 50) header.classList.add('scrolled');
+                else if (!isMenuOpen) header.classList.remove('scrolled');
+            });
+            revealOnScroll();
+
+            // 2. MENU MOBILE
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navMenuMobile = document.querySelector('.nav-menu-mobile');
+            const mobileLinks = document.querySelectorAll('.nav-menu-mobile a');
+
+            if (menuToggle && navMenuMobile) {
+                menuToggle.addEventListener('click', function() {
+                    const isActive = menuToggle.classList.toggle('active');
+                    navMenuMobile.classList.toggle('active');
+                    navMenuMobile.setAttribute('aria-hidden', !isActive);
+                    document.body.classList.toggle('modal-open', isActive);
+                    if(isActive) header.classList.add('menu-open-bg');
+                    else if (window.scrollY <= 50) header.classList.remove('menu-open-bg');
+                    menuToggle.setAttribute('aria-expanded', isActive);
+                });
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        menuToggle.classList.remove('active');
+                        navMenuMobile.classList.remove('active');
+                        navMenuMobile.setAttribute('aria-hidden', 'true');
+                        document.body.classList.remove('modal-open');
+                        if (window.scrollY <= 50) header.classList.remove('menu-open-bg');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    });
+                });
+            }
+
+            // 3. SLIDER
+            const sliderContainer = document.querySelector('.slider-container');
+            if(sliderContainer) {
+                const slides = document.querySelectorAll('.testimonial-slider .slide');
+                const nextBtn = sliderContainer.querySelector('.next-btn');
+                const prevBtn = sliderContainer.querySelector('.prev-btn');
+                let currentSlide = 0;
+                let autoSlideTimer;
+
+                function goToSlide(index) {
+                    if (slides[currentSlide]) slides[currentSlide].classList.remove('active-slide');
+                    currentSlide = (index + slides.length) % slides.length;
+                    if (slides[currentSlide]) slides[currentSlide].classList.add('active-slide');
+                }
+                function resetTimer() {
+                    clearInterval(autoSlideTimer);
+                    autoSlideTimer = setInterval(() => goToSlide(currentSlide + 1), 6000);
+                }
+                if (slides.length > 0) {
+                    if (slides[0]) slides[0].classList.add('active-slide');
+                    if(nextBtn) nextBtn.addEventListener('click', () => { goToSlide(currentSlide + 1); resetTimer(); });
+                    if(prevBtn) prevBtn.addEventListener('click', () => { goToSlide(currentSlide - 1); resetTimer(); });
+                    resetTimer();
+                }
+            }
+
+            // 4. MODAL VÍDEO
+            const openVideoBtn = document.getElementById('open-video-modal');
+            const videoModal = document.getElementById('video-modal');
+            const closeVideoBtn = document.getElementById('close-video-modal-btn');
+            const modalVideoPlayer = document.getElementById('modal-video-player');
+
+            if (openVideoBtn && videoModal && modalVideoPlayer) {
+                openVideoBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    videoModal.classList.add('active'); 
+                    setTimeout(() => videoModal.classList.add('show'), 10);
+                    document.body.classList.add('modal-open');
+                    
+                    modalVideoPlayer.currentTime = 0;
+                    modalVideoPlayer.volume = 1.0; 
+                    modalVideoPlayer.muted = false; 
+                    modalVideoPlayer.play().catch(err => console.log(err));
+                });
+
+                const closeVideoModal = () => {
+                    modalVideoPlayer.pause();
+                    videoModal.classList.remove('show');
+                    setTimeout(() => {
+                        videoModal.classList.remove('active');
+                        document.body.classList.remove('modal-open');
+                    }, 400); 
+                }
+
+                closeVideoBtn.addEventListener('click', closeVideoModal);
+                
+                window.addEventListener('click', (e) => { 
+                    if (e.target === videoModal || e.target.classList.contains('modal-content-wrapper') && videoModal.classList.contains('active')) closeVideoModal(); 
+                });
+            }
+
+            // 5. TOAST
+            function showToast(message) {
+                const container = document.getElementById('toast-container');
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+                container.appendChild(toast);
+                setTimeout(() => toast.classList.add('show'), 10);
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => toast.remove(), 400); 
+                }, 3000);
+            }
+
+            // ==========================================
+            // 6. LÓGICA DO TYPEFORM (PASSO A PASSO)
+            // ==========================================
+            const triageModal = document.getElementById('triage-modal');
+            const closeTriageBtn = document.getElementById('close-triage-btn');
+            const triageBtns = document.querySelectorAll('.whatsapp-triage-btn');
+            const triageForm = document.getElementById('triage-form');
+            
+            const steps = Array.from(document.querySelectorAll('.form-step'));
+            const btnNext = document.getElementById('btn-next');
+            const btnPrev = document.getElementById('btn-prev');
+            const btnSubmit = document.getElementById('btn-submit');
+            const progressBar = document.getElementById('progress-bar');
+            let currentStep = 0;
+
+            const closeTriageModal = () => {
+                triageModal.classList.remove('show');
+                setTimeout(() => {
+                    triageModal.classList.remove('active');
+                    if(!videoModal?.classList.contains('active')) {
+                        document.body.classList.remove('modal-open');
+                    }
+                    currentStep = 0;
+                    updateFormUI();
+                    triageForm.reset();
+                }, 400);
+            }
+
+            triageBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    currentStep = 0;
+                    updateFormUI();
+                    triageModal.classList.add('active');
+                    setTimeout(() => triageModal.classList.add('show'), 10);
+                    document.body.classList.add('modal-open');
+                });
+            });
+
+            if(closeTriageBtn) closeTriageBtn.addEventListener('click', closeTriageModal);
+
+            window.addEventListener('click', (e) => { 
+                if (triageModal && (e.target === triageModal || (e.target.classList.contains('modal-content-wrapper') && triageModal.classList.contains('active')))) closeTriageModal();
+            });
+
+            // Lógica de avanço/recuo
+            function updateFormUI() {
+                steps.forEach((step, index) => {
+                    step.classList.toggle('active', index === currentStep);
+                });
+
+                const progressPercentage = ((currentStep + 1) / steps.length) * 100;
+                progressBar.style.width = `${progressPercentage}%`;
+
+                btnPrev.style.display = currentStep === 0 ? 'none' : 'block';
+
+                if (currentStep === steps.length - 1) {
+                    btnNext.style.display = 'none';
+                    btnSubmit.style.display = 'block';
+                } else {
+                    btnNext.style.display = 'block';
+                    btnSubmit.style.display = 'none';
+                }
+
+                // Foca no input APENAS se não for no celular (largura maior que 768px)
+                const currentInput = steps[currentStep].querySelector('input[type="text"]');
+                if (currentInput && window.innerWidth > 768) {
+                    setTimeout(() => currentInput.focus(), 100);
+                }
+            }
+
+            // Validação inteligente
+            function validateCurrentStep() {
+                const currentStepEl = steps[currentStep];
+                
+                const textInput = currentStepEl.querySelector('input[type="text"]');
+                if (textInput && textInput.hasAttribute('required') && !textInput.value.trim()) {
+                    return false;
+                }
+                
+                const radioGroup = currentStepEl.querySelector('.custom-radio-group');
+                if (radioGroup) {
+                    const checkedRadio = radioGroup.querySelector('input[type="radio"]:checked');
+                    if (!checkedRadio) return false;
+                }
+
+                return true;
+            }
+
+            btnNext.addEventListener('click', () => {
+                if (validateCurrentStep()) {
+                    currentStep++;
+                    updateFormUI();
+                } else {
+                    showToast("Por favor, preencha a informação ou escolha uma opção.");
+                }
+            });
+
+            btnPrev.addEventListener('click', () => {
+                currentStep--;
+                updateFormUI();
+            });
+
+            // Avançar automaticamente no rádio
+            const customRadios = document.querySelectorAll('.custom-radio-group input[type="radio"]');
+            customRadios.forEach(radio => {
+                radio.addEventListener('change', () => {
+                    setTimeout(() => {
+                        if (currentStep < steps.length - 1) {
+                            btnNext.click();
+                        }
+                    }, 350); 
+                });
+            });
+
+            triageForm.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (currentStep < steps.length - 1) {
+                        btnNext.click();
+                    } else {
+                        if (validateCurrentStep()) {
+                            btnSubmit.click();
+                        } else {
+                            showToast("Por favor, preencha a informação antes de enviar.");
+                        }
+                    }
+                }
+            });
+
+            // Envio Final
+            triageForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                if (!validateCurrentStep()) {
+                    showToast("Por favor, preencha todas as informações antes de enviar.");
+                    return;
+                }
+
+                const nome = document.getElementById('triage-nome').value.trim();
+                const objetivo = document.querySelector('input[name="triage-objetivo"]:checked')?.value;
+                const nivel = document.querySelector('input[name="triage-nivel"]:checked')?.value;
+                const local = document.querySelector('input[name="triage-local"]:checked')?.value;
+                const dias = document.querySelector('input[name="triage-dias"]:checked')?.value;
+                const limitacao = document.getElementById('triage-limitacao').value.trim();
+
+                const mensagem = `Olá! Preciso de ajuda sobre as Planilhas de Treino.\n\n` +
+                                 `*Nome:* ${nome}\n` +
+                                 `*Objetivo:* ${objetivo}\n` +
+                                 `*Nível:* ${nivel}\n` +
+                                 `*Local:* ${local}\n` +
+                                 `*Dias por semana:* ${dias}\n` +
+                                 `*Limitações:* ${limitacao}`;
+
+                closeTriageModal();
+                
+                const numeroWhatsapp = "5547999382595"; 
+                const url = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensagem)}`;
+                
+                window.open(url, '_blank');
+            });
+
+            // Esc fecha os modais
+            document.addEventListener('keydown', (e) => { 
+                if (e.key === 'Escape') {
+                    if (videoModal?.classList.contains('active')) closeVideoModal();
+                    if (triageModal?.classList.contains('active')) closeTriageModal();
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>

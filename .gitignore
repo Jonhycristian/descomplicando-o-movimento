@@ -1,0 +1,24 @@
+# Dependências do OS
+.DS_Store
+Thumbs.db
+
+# Pastas de dependências locais/node (se usar no futuro)
+node_modules/
+.npm/
+
+# IDE e Editores
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Arquivos de log
+*.log
+
+# Build e cache
+dist/
+build/
+.cache/

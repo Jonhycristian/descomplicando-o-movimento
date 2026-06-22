@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Consultoria de Treino Online com Adrian Farias e Lucas Nunes. Programas 100% individualizados e avaliação postural.">
+    <link rel="icon" href="assets/favicon.png" type="image/png"> 
+    <title>Consultoria Online - Descomplicando o Movimento</title>
+    
+    <meta property="og:title" content="Consultoria Online - Descomplicando o Movimento">
+    <meta property="og:description" content="Programas 100% individualizados e avaliação postural. Treino com base em ciência!">
+    <meta property="og:url" content="https://descomplicandoomovimento.netlify.app/consultoria.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" itemprop="image" content="https://descomplicandoomovimento.netlify.app/assets/logo.jpeg">
+    <meta property="og:image:secure_url" content="https://descomplicandoomovimento.netlify.app/assets/logo.jpeg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="600">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* =========================================
+           1. VARIÁVEIS E RESET
+           ========================================= */
+        :root {
+            --color-black: #050505;
+            --color-gray-dark: #0f0f0f;
+            --color-gray-medium: #1a1a1a;
+            --color-gray-border: #333333;
+            --color-white: #FFFFFF;
+            --color-text-muted: #b0b0b0;
+            --color-red: #E50914; 
+            --color-red-dark: #b00610;
+            --color-red-glow: rgba(229, 9, 20, 0.6);
+            --color-gold: #FFD700; 
+            --color-whatsapp: #25D366;
+            --font-main: 'Montserrat', sans-serif;
+            --header-height-desktop: 90px;
+            --header-height-mobile: 80px; 
+            --transition-fast: 0.3s ease;
+            --transition-smooth: 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            --color-bg-card: #121212;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-main); background-color: var(--color-black); color: var(--color-white); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; background-image: radial-gradient(circle at 50% 0%, #1a1a1a 0%, #050505 100%); }
+        body.modal-open { overflow: hidden; }
+
+        /* =========================================
+           2. TIPOGRAFIA E CONTAINER
+           ========================================= */
+        h1, h2, h3, h4 { font-weight: 800; color: var(--color-white); line-height: 1.2; letter-spacing: -0.5px; }
+
+        h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: 1.5rem; text-transform: uppercase; text-shadow: 0 4px 30px rgba(0,0,0,0.8); }
+        h1 span { color: var(--color-red); display: block; font-size: 0.4em; letter-spacing: 4px; margin-bottom: 10px; }
+        
+        h2 { font-size: clamp(2rem, 4vw, 3rem); text-align: center; margin-bottom: 60px; position: relative; padding-bottom: 20px; width: 100%; }
+        h2::after { content: ''; display: block; width: 60px; height: 4px; background: var(--color-red); position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); border-radius: 2px; box-shadow: 0 0 15px var(--color-red-glow); }
+
+        h3 { font-size: 1.6rem; margin-bottom: 10px; font-weight: 700; color: var(--color-white); }
+        p { color: var(--color-text-muted); margin-bottom: 1rem; font-weight: 400; font-size: 1.05rem; letter-spacing: 0.01em; }
+        
+        a { text-decoration: none; color: inherit; transition: 0.3s ease; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; width: 100%; }
+        section { padding: 80px 0; position: relative; }
+
+        /* =========================================
+           3. ANIMAÇÕES
+           ========================================= */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .stagger-1 { transition-delay: 0.1s; } 
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        
+        @keyframes pulse-border { 0% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(229, 9, 20, 0); } 100% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0); } }
+        @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+
+        /* =========================================
+           4. BOTÕES E TAGS
+           ========================================= */
+        .btn { 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 14px 35px; 
+            border-radius: 50px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            transition: all 0.3s ease; 
+            cursor: pointer; 
+            border: none; 
+            font-size: 0.85rem; 
+            gap: 10px; 
+            position: relative; 
+            z-index: 20; 
+            overflow: hidden; 
+            color: #fff; 
+            width: auto; 
+            max-width: fit-content; 
+            white-space: nowrap;
+        }
+        .btn-primary { background: linear-gradient(135deg, var(--color-red) 0%, var(--color-red-dark) 100%); box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(229, 9, 20, 0.6); }
+        
+        .btn-outline { background: rgba(0,0,0,0.5); border: 2px solid var(--color-red); color: var(--color-white); box-shadow: 0 4px 15px rgba(229, 9, 20, 0.1); }
+        .btn-outline:hover { background: rgba(229, 9, 20, 0.1); border-color: var(--color-red-dark); box-shadow: 0 8px 25px rgba(229, 9, 20, 0.3); transform: translateY(-3px); }
+
+        .btn-large { padding: 18px 45px; font-size: 1rem; width: 100%; max-width: 450px; }
+
+        .hero-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 15px; width: 100%; }
+
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background-color: var(--color-whatsapp); color: #FFF; width: 65px; height: 65px; border-radius: 50%; text-align: center; font-size: 32px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); z-index: 999999; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; animation: pulse-green 2s infinite; }
+        .whatsapp-float:hover { background-color: #128C7E; transform: scale(1.1) translateY(-5px); color: #FFF; }
+        
+        /* BALÃO DE ESCASSEZ NO TOPO */
+        .hero-badge-wrapper {
+            position: absolute;
+            top: 120px; 
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 10;
+        }
+        .urgency-badge { 
+            display: inline-block; 
+            background: rgba(229, 9, 20, 0.15); 
+            color: var(--color-red); 
+            border: 1px solid var(--color-red); 
+            padding: 6px 18px; 
+            border-radius: 30px; 
+            font-size: 0.8rem; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            animation: pulse-border 2s infinite; 
+            white-space: nowrap;
+            margin: 0 auto;
+        }
+
+        /* =========================================
+           5. CABEÇALHO & MENU (PADRÃO INDEX)
+           ========================================= */
+        .site-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 2000; height: var(--header-height-desktop); background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%); transition: all 0.4s ease; display: flex; align-items: center; }
+        .site-header.scrolled, .site-header.menu-open-bg { background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.05); height: 80px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .main-nav-desktop { display: flex; justify-content: space-between; align-items: center; width: 100%; height: 100%; }
+        .nav-left, .nav-right { display: flex; align-items: center; flex: 1; }
+        .nav-right { justify-content: flex-end; gap: 20px; }
+        .logo { flex: 0 0 auto; margin: 0 30px; position: relative; z-index: 2005; }
+        .logo img { height: 55px; transition: 0.3s; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+        .site-header.scrolled .logo img { height: 45px; }
+        .nav-menu { display: flex; gap: 30px; list-style: none; align-items: center; }
+        .nav-menu li a:not(.btn) { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; position: relative; opacity: 0.9; padding: 5px 0; color: var(--color-white); letter-spacing: 0.5px; }
+        .nav-menu li a:not(.btn):hover { opacity: 1; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        .nav-menu li a:not(.btn):after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0%; height: 2px; background: var(--color-red); transition: 0.3s; box-shadow: 0 0 5px var(--color-red); }
+        .nav-menu li a:not(.btn):hover:after { width: 100%; }
+
+        .main-nav-mobile { display: none; }
+        .nav-menu-mobile { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #000; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 30px; transform: translateX(100%); transition: 0.4s cubic-bezier(0.77, 0, 0.175, 1); z-index: 1999; padding: 80px 20px 20px 20px; list-style: none; }
+        .nav-menu-mobile.active { transform: translateX(0); }
+        .nav-menu-mobile li a:not(.btn) { font-size: 1.5rem; font-weight: 700; color: #fff; -webkit-tap-highlight-color: transparent; }
+        .nav-menu-mobile li a:not(.btn):hover { color: var(--color-red); }
+        
+        .menu-toggle { display: none; background: none; border: none; cursor: pointer; z-index: 2002; padding: 10px; }
+        .menu-toggle span { display: block; width: 30px; height: 2px; background: #fff; margin: 6px 0; transition: 0.3s; }
+        .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); background: var(--color-red); }
+        .menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); background: var(--color-red); }
+
+        /* =========================================
+           6. ESTILOS ESPECÍFICOS CONSULTORIA
+           ========================================= */
+        
+        .intro-section { 
+            position: relative; 
+            text-align: center; 
+            padding: 140px 20px 80px 20px;
+            border-bottom: 1px solid #222; 
+            min-height: 100vh; 
+            display: flex; align-items: center; justify-content: center; 
+            overflow: hidden;
+        }
+        .video-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 0.6; }
+        .intro-section::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(5,5,5,1) 100%); z-index: 1; }
+        .intro-content { position: relative; z-index: 2; width: 100%; }
+        .intro-subtitle { font-size: 1.2rem; color: #e0e0e0; max-width: 750px; margin: 20px auto 40px auto; line-height: 1.6; text-shadow: 0 2px 4px rgba(0,0,0,0.8);}
+
+        .video-landscape-wrapper { position: relative; width: 100%; max-width: 900px; margin: 0 auto; aspect-ratio: 16 / 9; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); background: #000; pointer-events: none; }
+        .video-landscape-wrapper video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+
+        .etapas-grid { display: flex; flex-direction: column; gap: 20px; max-width: 900px; margin: 0 auto; }
+        .etapa-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); border-left: 4px solid var(--color-red); padding: 35px; border-radius: 12px; display: flex; gap: 30px; align-items: flex-start; transition: transform 0.3s ease; }
+        .etapa-card:hover { transform: translateX(10px); background: rgba(255, 255, 255, 0.05); }
+        .etapa-number { font-size: 3.5rem; font-weight: 900; color: var(--color-red); opacity: 0.3; line-height: 0.8; font-style: italic; min-width: 70px; text-align: right; }
+        .etapa-content h3 { font-size: 1.4rem; text-transform: uppercase; letter-spacing: 1px; color: var(--color-white); margin-bottom: 10px; }
+        .etapa-content p { color: #ccc; margin: 0; font-size: 1.05rem; }
+
+        .bloco-destaque { background: linear-gradient(145deg, #121212, #0a0a0a); border-radius: 24px; padding: 60px 50px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); text-align: center;}
+        .bloco-destaque h2 { margin-bottom: 15px; border:none; padding-bottom: 0; font-size: 2.2rem; }
+        .bloco-destaque h2::after { display: none; }
+        
+        .destaque-flex { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; text-align: left;}
+        
+        .destaque-card-modern { background: rgba(255,255,255,0.02); border: 1px solid rgba(229, 9, 20, 0.3); padding: 40px 30px; border-radius: 16px; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .destaque-card-modern:hover { transform: translateY(-5px); background: rgba(229, 9, 20, 0.05); box-shadow: 0 10px 30px rgba(229, 9, 20, 0.1); }
+        .destaque-card-modern::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--color-red); }
+        .icon-circle-destaque { width: 60px; height: 60px; background: rgba(229, 9, 20, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--color-red); margin-bottom: 20px; }
+        .destaque-card-modern h3 { color: var(--color-white); font-size: 1.3rem; margin-bottom: 15px; }
+        .destaque-card-modern p { color: #aaa; font-size: 0.95rem; margin-bottom: 20px;}
+        .destaque-card-modern ul { list-style: none; padding: 0;}
+        .destaque-card-modern ul li { color: #ddd; margin-bottom: 10px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px;}
+        .destaque-card-modern ul li i { color: var(--color-red); font-size: 0.8rem;}
+
+        .diff-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
+        .diff-item { text-align: center; padding: 40px 30px; background: #0f0f0f; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
+        
+        .mentor-box { display: flex; align-items: center; gap: 40px; background: linear-gradient(145deg, #161616, #0d0d0d); padding: 40px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; margin-top: 20px; }
+        .mentor-box img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 3px solid var(--color-red); flex-shrink: 0; }
+        .mentor-text h3 { font-size: 1.8rem; color: var(--color-white); margin-bottom: 5px; text-align: left; }
+        .mentor-cref { display: block; font-size: 0.85rem; color: var(--color-red); margin-bottom: 15px; font-weight: 700; letter-spacing: 1px; text-align: left; text-transform: uppercase; }
+
+        .gallery-carousel { display: flex; overflow-x: auto; gap: 20px; padding: 20px 0; scroll-snap-type: x mandatory; scrollbar-width: none; cursor: grab; }
+        .gallery-carousel::-webkit-scrollbar { display: none; }
+        .gallery-item { flex: 0 0 300px; width: 300px; aspect-ratio: 4/5; border-radius: 15px; overflow: hidden; scroll-snap-align: center; border: 1px solid var(--color-gray-border); background: #111; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+        .gallery-wrapper { position: relative; max-width: 100%; margin: 0 auto; }
+        .gallery-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: #fff; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #333; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; }
+        .gallery-wrapper:hover .gallery-btn { opacity: 1; pointer-events: all; }
+        .gallery-prev { left: 10px; } .gallery-next { right: 10px; }
+
+        .slider-container { max-width: 900px; margin: 80px auto 0; padding: 60px 50px; background: rgba(20, 20, 20, 0.8); border-radius: 20px; border: 1px solid var(--color-gray-border); text-align: center; position: relative; backdrop-filter: blur(10px); }
+        .testimonial-slider { position: relative; width: 100%; min-height: 250px; }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; opacity: 0; visibility: hidden; transition: all 0.5s ease; transform: translateX(20px); padding: 20px; }
+        .slide.active-slide { opacity: 1; visibility: visible; position: relative; transform: translateX(0); }
+        .slide p { font-size: 1.2rem; font-style: italic; margin-bottom: 10px; line-height: 1.8; color: #e0e0e0; }
+        .slide i.fa-quote-left { color: var(--color-red); font-size: 2rem; margin-bottom: 20px; display: block; text-shadow: 0 0 10px var(--color-red-glow); }
+        .stars { color: var(--color-gold); margin-bottom: 25px; font-size: 1.1rem; text-shadow: 0 0 10px rgba(255, 215, 0, 0.4); }
+        .profile-pic { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid var(--color-red); box-shadow: 0 0 10px var(--color-red-glow); }
+        .testimonial-profile { display: flex; align-items: center; justify-content: center; margin-top: 20px; }
+        .profile-name { font-weight: 700; color: #fff; font-size: 1.1rem; }
+        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.05); width: 45px; height: 45px; border-radius: 50%; border: none; color: #fff; font-size: 1.2rem; cursor: pointer; transition: 0.3s; z-index: 10; display: flex; align-items: center; justify-content: center; }
+        .slider-btn:hover { background: var(--color-red); box-shadow: 0 0 15px var(--color-red-glow); }
+        .prev-btn { left: -25px; } .next-btn { right: -25px; }
+
+        .tags-container { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 40px; }
+        .tag-pill { padding: 12px 25px; background: rgba(255,255,255,0.05); border-radius: 50px; border: 1px solid rgba(255,255,255,0.1); color: #ccc; font-size: 0.9rem; font-weight: 500; transition: 0.3s; }
+
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 10px; }
+        .faq-question { width: 100%; text-align: left; background: none; border: none; padding: 25px 0; font-size: 1.1rem; font-weight: 600; color: #e0e0e0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; }
+        .faq-question:hover { color: var(--color-red); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+        .faq-answer p { padding: 0 0 25px 0; font-size: 1rem; color: #ccc; }
+
+        .cta-final { text-align: center; padding: 120px 20px; background: linear-gradient(180deg, #050505 0%, #1a0202 100%); border-top: 1px solid #222; }
+
+        /* =========================================
+           7. MODAIS (TRIAGEM, VÍDEO E TOAST)
+           ========================================= */
+        
+        /* AQUI ESTÁ A CORREÇÃO DE LAYOUT DO MODAL E CORTES NA TELA */
+        .triage-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); backdrop-filter: blur(10px); z-index: 20000; overflow-y: auto; opacity: 0; transition: opacity 0.5s ease; }
+        .triage-modal.active { display: flex; flex-direction: column; }
+        .triage-modal.show { opacity: 1; }
+
+        .modal-content-wrapper { position: relative; width: 100%; min-height: 100%; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        
+        .close-btn { position: absolute; top: 15px; right: 15px; color: #fff; font-size: 1.5rem; cursor: pointer; background: rgba(255,255,255,0.05); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; z-index: 20001; }
+        .close-btn:hover { background: var(--color-red); transform: rotate(90deg); }
+
+        /* CSS DO MODAL DE VÍDEO (VERTICAL) */
+        .video-modal-container { width: 100%; max-width: 400px; background: #000; border-radius: 16px; position: relative; border: 1px solid var(--color-red); box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(229, 9, 20, 0.2); padding: 5px; margin: auto; }
+        .video-responsive { width: 100%; aspect-ratio: 9/16; border-radius: 12px; overflow: hidden; background: #000; }
+        .video-responsive video { width: 100%; height: 100%; object-fit: cover; }
+        
+        /* O "X" vermelho flutuando na borda */
+        .video-close-btn { top: -15px; right: -15px; background: var(--color-red) !important; color: #fff !important; box-shadow: 0 0 15px var(--color-red-glow); opacity: 1 !important; z-index: 30000;}
+        .video-close-btn:hover { background: var(--color-red-dark) !important; transform: scale(1.1) rotate(90deg); }
+
+        /* Estilos da Triagem Passo a Passo (Typeform) */
+        .triage-form-container { background: linear-gradient(145deg, #121212, #0a0a0a); padding: 40px 35px; border-radius: 24px; max-width: 500px; width: 100%; border: 1px solid rgba(229, 9, 20, 0.2); box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(229, 9, 20, 0.15); position: relative; z-index: 20001; margin: auto; max-height: 85vh; overflow-y: auto; }
+        
+        /* Personalização da barra de rolagem interna da triagem (fica lindo e não ocupa muito espaço) */
+        .triage-form-container::-webkit-scrollbar { width: 6px; }
+        .triage-form-container::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
+        .triage-form-container::-webkit-scrollbar-thumb { background: var(--color-red); border-radius: 10px; }
+
+        .progress-container { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-bottom: 30px; overflow: hidden;}
+        .progress-bar { height: 100%; width: 0%; background: var(--color-red); transition: width 0.4s ease; border-radius: 10px;}
+
+        .triage-header { text-align: left; margin-bottom: 20px; }
+        .triage-header h3 { font-size: 1.5rem; color: var(--color-white); margin-bottom: 5px; }
+        .triage-header p { font-size: 0.85rem; color: var(--color-text-muted); }
+
+        .form-step { display: none; opacity: 0; }
+        .form-step.active { display: block; animation: fadeInStep 0.5s ease forwards; }
+        @keyframes fadeInStep { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+
+        .triage-form-group { margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px; position: relative; }
+        .triage-form-group > label { font-size: 1.1rem; font-weight: 700; color: var(--color-white); line-height: 1.4; margin-bottom: 5px; }
+        
+        .triage-form-group input[type="text"], .triage-form-group input[type="number"], .triage-form-group textarea { width: 100%; padding: 16px 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.3); color: #fff; font-family: var(--font-main); font-size: 1.1rem; transition: all 0.3s ease; }
+        .triage-form-group textarea { resize: vertical; min-height: 80px; }
+        .triage-form-group input:focus, .triage-form-group textarea:focus { border-color: var(--color-red); background: rgba(255,255,255,0.05); box-shadow: 0 0 15px rgba(229, 9, 20, 0.2); outline: none; }
+        .triage-form-group input::placeholder, .triage-form-group textarea::placeholder { color: rgba(255,255,255,0.2); font-size: 1rem; }
+
+        /* Opções Clicáveis Customizadas (Radios) */
+        .custom-radio-group { display: flex; flex-direction: column; gap: 10px; }
+        .custom-radio-group input[type="radio"] { display: none; }
+        .custom-radio-group label { display: block; padding: 16px 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.3); color: #fff; font-family: var(--font-main); font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; text-align: left; }
+        .custom-radio-group label:hover { background: rgba(255,255,255,0.05); border-color: rgba(229, 9, 20, 0.5); }
+        .custom-radio-group input[type="radio"]:checked + label { background: rgba(229, 9, 20, 0.15); border-color: var(--color-red); box-shadow: 0 0 15px rgba(229, 9, 20, 0.2); font-weight: 600; }
+
+        .triage-navigation { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px;}
+        .btn-prev { background: transparent; color: #888; border: none; font-family: var(--font-main); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s; font-size: 0.85rem; padding: 10px 0;}
+        .btn-prev:hover { color: #fff; }
+        .btn-next, .triage-submit-btn { padding: 12px 30px; font-size: 0.9rem; }
+
+        .toast-container { position: fixed; top: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; gap: 10px; }
+        .toast { background: var(--color-red); color: #fff; padding: 15px 25px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); font-weight: 600; font-size: 0.9rem; transform: translateX(120%); transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); display: flex; align-items: center; gap: 10px; }
+        .toast.show { transform: translateX(0); }
+
+        /* =========================================
+           8. FOOTER (PADRÃO INDEX)
+           ========================================= */
+        footer { background: #020202; padding: 80px 0 30px; border-top: 1px solid #151515; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 60px; margin-bottom: 60px; }
+        .footer-col h4 { margin-bottom: 25px; font-size: 1.1rem; color: #fff; position: relative; display: inline-block; }
+        .footer-col h4::after { content: ''; display: block; width: 30px; height: 2px; background: var(--color-red); margin-top: 8px; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col a { color: #888; transition: 0.3s; font-size: 0.85rem; display: inline-block; }
+        .footer-col a:hover { color: var(--color-red); padding-left: 5px; }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid #111; color: #444; font-size: 0.8rem; }
+        
+        .contact-info-item { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; color: #b0b0b0; font-size: 0.85rem; line-height: 1.4; }
+        .contact-info-item i { color: var(--color-red); font-size: 1.1rem; flex-shrink: 0; }
+        .contact-info-item .email-text { font-size: clamp(0.6rem, 4vw, 0.85rem); white-space: nowrap; }
+        .contact-info-item a { display: flex; align-items: center; gap: 10px; margin: 0; }
+        .contact-info-item a:hover { padding-left: 0; }
+        
+        .social-links { list-style: none; padding: 0; margin: 0; }
+        .social-links li { margin-bottom: 12px; }
+        .social-links a { display: flex; align-items: center; gap: 8px; color: #b0b0b0; font-size: 0.85rem; transition: transform 0.3s ease, color 0.3s ease; }
+        .social-links a i { color: var(--color-red); font-size: 1.2rem; }
+        .social-links a:hover { color: var(--color-white); transform: translateX(5px); padding-left: 0; }
+        
+        @media (min-width: 1024px) { .footer-col:last-child { padding-left: 60px; } }
+
+        /* =========================================
+           9. RESPONSIVIDADE
+           ========================================= */
+        @media (max-width: 1024px) {
+            .main-nav-desktop { display: none; }
+            .main-nav-mobile { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+            .menu-toggle { display: block; }
+        }
+
+        @media (max-width: 768px) {
+            .site-header { height: var(--header-height-mobile); padding: 0 15px; }
+            .logo img { height: 40px; }
+            h1 { font-size: 2.2rem; }
+            
+            .hero-badge-wrapper { top: 95px; }
+            .urgency-badge { font-size: 0.65rem; padding: 5px 12px; }
+            
+            .intro-section { padding-top: 120px; }
+            .video-landscape-wrapper { border-radius: 12px; }
+
+            .btn { width: 100%; max-width: 100%; white-space: normal; text-align: center; }
+            .btn-large { padding: 15px 20px; font-size: 0.85rem; line-height: 1.4; }
+
+            .hero-buttons { flex-direction: column; gap: 10px; }
+
+            .etapa-card { flex-direction: column; gap: 15px; padding: 25px; }
+            .etapa-number { text-align: left; }
+            
+            .bloco-destaque { padding: 40px 20px; }
+            
+            .mentor-box { flex-direction: column !important; align-items: center; padding: 25px 20px; gap: 15px; text-align: center; }
+            .mentor-box img { width: 100px; height: 100px; margin-bottom: 10px; }
+            .mentor-text h3, .mentor-cref, .mentor-text p { text-align: center; }
+            
+            .gallery-carousel { padding: 20px 20px 40px 20px; } 
+            .gallery-item { flex: 0 0 85vw; width: 85vw; }
+            .gallery-btn { display: none; }
+            
+            .whatsapp-float { width: 55px; height: 55px; font-size: 28px; bottom: 20px; right: 20px; }
+            .whatsapp-float::before { display: none; }
+            
+            .slider-container { padding: 40px 20px; margin-top: 40px;}
+            .prev-btn { left: -10px; } .next-btn { right: -10px; }
+            .diff-grid { grid-template-columns: 1fr; }
+            
+            .triage-form-container { padding: 30px 20px; }
+            .triage-form-group > label { font-size: 1rem; }
+            
+            .nav-menu-mobile li a.btn { font-size: 0.9rem; padding: 14px 20px; width: 100%; max-width: 280px; white-space: nowrap; }
+        }
+    </style>
+
+    <!-- SEO AVANÇADO E SCHEMA.ORG -->
+    <meta name="robots" content="index, follow">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Descomplicando o Movimento">
+    <meta name="twitter:description" content="Treino com base em ciência e biomecânica.">
+    <meta name="twitter:image" content="https://descomplicandoomovimento.netlify.app/assets/logo.jpeg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HealthAndBeautyBusiness",
+      "name": "Descomplicando o Movimento",
+      "image": "https://descomplicandoomovimento.netlify.app/assets/logo.jpeg",
+      "@id": "",
+      "url": "https://descomplicandoomovimento.netlify.app/",
+      "telephone": "",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "BR"
+      }
+    }
+    </script>
+</head>
+
+<body>
+
+    <header class="site-header" id="header">
+        <div class="container">
+            <nav class="main-nav-desktop">
+                <div class="nav-left">
+                    <ul class="nav-menu">
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="mentoria.html">Mentoria</a></li>
+                        <li><a href="consultoria.html">Consultoria</a></li>
+                        <li><a href="planilhas.html">Planilhas</a></li>
+                    </ul>
+                </div>
+                <div class="logo">
+                    <a href="index.html"><img src="assets/logo.png" alt="Logo Descomplicando o Movimento"></a>
+                </div>
+                <div class="nav-right">
+                    <ul class="nav-menu">
+                        <li><a href="https://www.instagram.com/descomplicando_omovimento" target="_blank">Instagram</a></li>
+                    </ul>
+                    <a href="#" class="btn btn-primary whatsapp-triage-btn"><i class="fab fa-whatsapp"></i> Falar</a>
+                </div>
+            </nav>
+
+            <nav class="main-nav-mobile">
+                <div class="logo">
+                    <a href="index.html"><img src="assets/logo.png" alt="Logo Descomplicando o Movimento"></a>
+                </div>
+                <button class="menu-toggle" aria-label="Abrir menu mobile" aria-label="Abrir menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </nav>
+        </div>
+
+        <ul class="nav-menu-mobile" aria-hidden="true">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="mentoria.html">Mentoria</a></li>
+            <li><a href="consultoria.html">Consultoria</a></li>
+            <li><a href="planilhas.html">Planilhas</a></li>
+            <li><a href="https://www.instagram.com/descomplicando_omovimento" target="_blank">Instagram</a></li>
+            <li><a href="#" class="btn btn-primary whatsapp-triage-btn" style="margin-top: 20px;">Falar com a equipe</a></li>
+        </ul>
+    </header>
+
+    <main>
+        <section class="intro-section" id="hero">
+            <video autoplay loop muted playsinline webkit-playsinline defaultMuted class="video-bg">
+                <source src="assets/consultoria/fundo-consultoria.mp4" type="video/mp4">
+            </video>
+            
+            <div class="hero-badge-wrapper reveal active">
+                <div class="urgency-badge">⚠️ ÚLTIMAS VAGAS COM VALOR PROMOCIONAL</div>
+            </div>
+
+            <div class="container">
+                <div class="intro-content reveal active">
+                    <h1><span>DESCOMPLICANDO O MOVIMENTO</span>Consultoria Online</h1>
+                    <p class="intro-subtitle">
+                        Treinamento com precisão científica, acompanhamento real e resultados que você sempre sonhou. A verdade é simples: ninguém progride com treinos genéricos.
+                    </p>
+
+                    <div style="display: flex; gap: 20px; justify-content: center; flex-direction: column; align-items: center;">
+                        
+                        <div class="hero-buttons">
+                            <a href="#" class="btn btn-primary btn-large whatsapp-triage-btn">
+                                👉 QUERO COMEÇAR MINHA CONSULTORIA
+                            </a>
+                            <a href="#" class="btn btn-outline btn-large video-modal-btn">
+                                <i class="fas fa-play-circle"></i> VER O VÍDEO EM AÇÃO
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-block" style="background: var(--color-bg-card);">
+            <div class="container">
+                <h2 class="reveal">Etapas da Consultoria Online</h2>
+                <div class="etapas-grid reveal">
+                    
+                    <div class="etapa-card stagger-1">
+                        <div class="etapa-number">01</div>
+                        <div class="etapa-content">
+                            <h3>Anamnese</h3>
+                            <p>Na anamnese, realizamos um levantamento completo sobre sua saúde, histórico de treinos, rotina, limitações, dores e objetivos, para que o planejamento seja totalmente individualizado.</p>
+                        </div>
+                    </div>
+
+                    <div class="etapa-card stagger-2">
+                        <div class="etapa-number">02</div>
+                        <div class="etapa-content">
+                            <h3>Avaliação Postural</h3>
+                            <p>Analisamos alinhamentos corporais, possíveis desequilíbrios musculares e compensações que podem influenciar sua performance, estética e risco de lesão.</p>
+                        </div>
+                    </div>
+
+                    <div class="etapa-card stagger-3">
+                        <div class="etapa-number">03</div>
+                        <div class="etapa-content">
+                            <h3>Avaliação Funcional</h3>
+                            <p>Aplicamos testes específicos para avaliar mobilidade, estabilidade e controle motor, identificando limitações que precisam ser ajustadas no treino.</p>
+                        </div>
+                    </div>
+
+                    <div class="etapa-card stagger-1">
+                        <div class="etapa-number">04</div>
+                        <div class="etapa-content">
+                            <h3>Desenvolvimento do Macrociclo</h3>
+                            <p>Estruturamos seu planejamento completo com divisão estratégica de fases, controle de volume, intensidade e progressão, respeitando seu nível e objetivo.</p>
+                        </div>
+                    </div>
+
+                    <div class="etapa-card stagger-2">
+                        <div class="etapa-number">05</div>
+                        <div class="etapa-content">
+                            <h3>Suporte Online</h3>
+                            <p>Você recebe acompanhamento contínuo para ajustes de carga, dúvidas técnicas, correções e evolução estratégica do seu treino.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section style="background-color: #080808; border-top: 1px solid #222; border-bottom: 1px solid #222;" id="video-apresentacao">
+            <div class="container">
+                <div class="reveal">
+                    <h2 style="margin-bottom: 10px;">Entenda Nossa Metodologia</h2>
+                    <p style="text-align: center; color: #888; margin-bottom: 40px;">Uma visão interna de como estruturamos o seu resultado.</p>
+                    
+                    <div class="video-landscape-wrapper">
+                        <video playsinline autoplay muted loop disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback">
+                            <source src="assets/consultoria/explicativo.mp4" type="video/mp4">
+                            Seu navegador não suporta vídeos.
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-block" style="padding-top: 80px;">
+            <div class="container">
+                <div class="bloco-destaque reveal">
+                    <span class="tag-vermelha" style="background: var(--color-red); color: #fff; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); text-transform: uppercase;">BÔNUS REGIONAL</span>
+                    
+                    <h2 style="color: var(--color-white); margin-top: 15px;">Exclusivo para Itajaí e Região</h2>
+                    <p style="color: #ccc; font-size: 1.1rem;">(Para alunos que fecharem plano anual ou semestral)</p>
+                    
+                    <div class="destaque-flex">
+                        <div class="destaque-card-modern">
+                            <div class="icon-circle-destaque"><i class="fas fa-clipboard-check"></i></div>
+                            <h3>Avaliação Presencial Completa</h3>
+                            <p>Um nível de precisão que o online não alcança. Realizamos uma bateria de testes físicos e posturais ao vivo:</p>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Antropométrica (dobras cutâneas)</li>
+                                <li><i class="fas fa-check"></i> Postural estática e dinâmica</li>
+                                <li><i class="fas fa-check"></i> Testes funcionais de força e mobilidade</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="destaque-card-modern">
+                            <div class="icon-circle-destaque"><i class="fas fa-heartbeat"></i></div>
+                            <h3>Controle Fisiológico</h3>
+                            <p>Garantia de segurança e performance. Durante a avaliação presencial, monitoramos seus sinais vitais para parametrizar o treino:</p>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Pressão arterial basal</li>
+                                <li><i class="fas fa-check"></i> Frequência cardíaca de repouso</li>
+                                <li><i class="fas fa-check"></i> Histórico de variabilidade cardíaca</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="btn btn-primary whatsapp-triage-btn" style="margin-top: 40px;">Quero Meu Plano e Avaliação Presencial</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-block">
+            <div class="container">
+                <h2 class="reveal">Por que nossa Consultoria é Diferente?</h2>
+                <div class="diff-grid reveal">
+                    <div class="diff-item stagger-1">
+                        <i class="fas fa-microscope" style="font-size: 2.5rem; color: var(--color-red); margin-bottom: 20px;"></i>
+                        <h3>Biomecânica Aplicada</h3>
+                        <p>Ajustamos o exercício ao seu corpo, prevenindo dores e maximizando resultados através da ciência.</p>
+                    </div>
+                    <div class="diff-item stagger-2">
+                        <i class="fas fa-mobile-alt" style="font-size: 2.5rem; color: var(--color-red); margin-bottom: 20px;"></i>
+                        <h3>Correção Semanal</h3>
+                        <p>Envie vídeos dos seus movimentos no WhatsApp. Corrigimos sua execução para garantir 100% de aproveitamento.</p>
+                    </div>
+                    <div class="diff-item stagger-3">
+                        <i class="fas fa-user-check" style="font-size: 2.5rem; color: var(--color-red); margin-bottom: 20px;"></i>
+                        <h3>Especialistas</h3>
+                        <p>Nossos profissionais são especializados em postura e treinamento feminino, garantindo um olhar técnico e direcionado.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-block" style="background: #111;">
+            <div class="container">
+                <h2 class="reveal">Para quem é a Consultoria?</h2>
+                <div class="tags-container reveal">
+                    <span class="tag-pill">Para quem quer evoluir sem dor</span>
+                    <span class="tag-pill">Para quem precisa de orientação precisa</span>
+                    <span class="tag-pill">Para quem treina há anos e não vê resultado</span>
+                    <span class="tag-pill">Para quem volta de lesão</span>
+                    <span class="tag-pill">Para quem busca estética com segurança</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-block" id="quem-somos">
+            <div class="container">
+                <h2 class="reveal">Quem Cuida do Seu Treino?</h2>
+                <div class="mentors-container">
+                    <div class="mentor-box reveal stagger-1">
+                        <img src="assets/lucas.png" alt="Lucas Campestrini">
+                        <div class="mentor-text">
+                            <h3>Lucas Campestrini</h3>
+                            <span class="mentor-cref">CREF SC- 041598</span>
+                            <p>Especialista em cinesiologia e biomecânica. Responsável por analisar a física dos seus movimentos e a progressão de cargas.</p>
+                        </div>
+                    </div>
+                    <div class="mentor-box reveal stagger-2">
+                        <img src="assets/adrian.png" alt="Adrian Farias">
+                        <div class="mentor-text">
+                            <h3>Adrian Farias</h3>
+                            <span class="mentor-cref">CREF SC- 039930</span>
+                            <p>Referência em treinamento feminino e avaliação postural. O foco é harmonizar seu físico, corrigindo desvios posturais.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonial-section">
+            <div class="container">
+                <h2 class="reveal">Resultados Reais</h2>
+                <p class="gallery-instruction reveal"><i class="fas fa-arrows-left-right"></i> Arraste para ver as transformações</p>
+                <div class="gallery-wrapper reveal">
+                    <button class="gallery-btn gallery-prev" aria-label="Anterior" id="gallery-prev"><i class="fas fa-chevron-left"></i></button>
+                    <div class="gallery-carousel" id="gallery-carousel">
+                        <div class="gallery-item"><img src="assets/antesedepois1.png" alt="Resultado 1" loading="lazy"></div>
+                        <div class="gallery-item"><img src="assets/antesedepois2.png" alt="Resultado 2" loading="lazy"></div>
+                        <div class="gallery-item"><img src="assets/antesedepois3.png" alt="Resultado 3" loading="lazy"></div>
+                        <div class="gallery-item"><img src="assets/antesedepois4.png" alt="Resultado 4" loading="lazy"></div>
+                        <div class="gallery-item"><img src="assets/antesedepois5.png" alt="Resultado 5" loading="lazy"></div>
+                        <div class="gallery-item"><img src="assets/antesedepois6.png" alt="Resultado 6" loading="lazy"></div>
+                        <div class="gallery-item"><img src="assets/antesedepois7.jpeg" alt="Resultado 7" loading="lazy"></div>
+                    </div>
+                    <button class="gallery-btn gallery-next" aria-label="Próximo" id="gallery-next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                
+                <h3 class="reveal" style="text-align: center; margin-top: 80px; margin-bottom: 40px;">O que dizem nossos alunos</h3>
+                <div class="slider-container reveal">
+                    <div class="testimonial-slider">
+                        
+                        <div class="slide active-slide">
+                            <i class="fas fa-quote-left"></i>
+                            <p>"Iniciei a consultoria devido ao meu problema de hérnia de disco. Estou com o time há pouco mais de 1 ano e não sinto mais dor. Consigo ter uma rotina de treino intensa. É um dos melhores investimentos que faço."</p>
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <div class="testimonial-profile">
+                                <img src="assets/LEANDRO CONSULTORIA.png" alt="Foto Aluno" class="profile-pic" loading="lazy">
+                                <div class="profile-info"><span class="profile-name">Leandro</span></div>
+                            </div>
+                        </div>
+
+                        <div class="slide">
+                            <i class="fas fa-quote-left"></i>
+                            <p>"O que me fez decidir pela assessoria foi o domínio que o Adrian e o Lucas têm sobre o assunto. Ter vídeos explicando a execução de cada exercício me deixou tranquila e segura para treinar."</p>
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <div class="testimonial-profile">
+                                <img src="assets/JOANA CONSULTORIA.png" alt="Foto Aluna" class="profile-pic" loading="lazy">
+                                <div class="profile-info"><span class="profile-name">Joana</span></div>
+                            </div>
+                        </div>
+
+                        <div class="slide">
+                            <i class="fas fa-quote-left"></i>
+                            <p>"Antes de vocês, meus treinos eram de qualquer jeito, e eu vivia me machucando porque sentia dor na lombar! Hoje tenho profissionais incríveis que sabem o que estão fazendo."</p>
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <div class="testimonial-profile">
+                                <img src="assets/ROSEANE CONSULTORIA.png" alt="Foto Aluna" class="profile-pic" loading="lazy">
+                                <div class="profile-info"><span class="profile-name">Roseane</span></div>
+                            </div>
+                        </div>
+
+                        <div class="slide">
+                            <i class="fas fa-quote-left"></i>
+                            <p>"Gostaria de deixar registrado minha satisfação de ter escolhido uma consultoria para melhor evolução nos meus treinos! Vocês são ótimos! Estava desanimada e desmotivada na verdade. E foi a melhor escolha!!"</p>
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <div class="testimonial-profile">
+                                <img src="assets/ANA CONSULTORIA.png" alt="Foto Aluna" class="profile-pic" loading="lazy">
+                                <div class="profile-info"><span class="profile-name">Ana</span></div>
+                            </div>
+                        </div>
+
+                        <div class="slide">
+                            <i class="fas fa-quote-left"></i>
+                            <p>"Antes eu treinava de qualquer jeito e sentia dor na lombar. Hoje tenho cuidados por profissionais incríveis. O diferencial é o atendimento e a ciência aplicada em cada exercício."</p>
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <div class="testimonial-profile">
+                                <img src="assets/ISRAELA CONSULTORIA.png" alt="Foto Aluna" class="profile-pic" loading="lazy">
+                                <div class="profile-info"><span class="profile-name">Israela</span></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq">
+            <div class="container">
+                <h2 class="reveal">Perguntas Frequentes</h2>
+                <div class="faq-container reveal">
+                    <div class="faq-item">
+                        <button class="faq-question">1. Como funciona a Consultoria Online na prática? <i class="fas fa-chevron-down"></i></button>
+                        <div class="faq-answer"><p>Funciona com um processo de 3 etapas: 1) Anamnese detalhada por formulário; 2) Envio de vídeos para avaliação postural e funcional (guiado por nós); 3) Montagem do treino individualizado com vídeos e suporte via WhatsApp.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">2. Vocês realmente corrigem a execução? <i class="fas fa-chevron-down"></i></button>
+                        <div class="faq-answer"><p>Sim. Você envia seus vídeos no grupo exclusivo de WhatsApp e corrigimos sua execução detalhadamente, focando na biomecânica e nas compensações que você apresenta. A correção de execução é o nosso maior diferencial.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">3. O pagamento é mensal ou plano fechado? <i class="fas fa-chevron-down"></i></button>
+                        <div class="faq-answer"><p>Você escolhe! Temos planos mensais, trimestrais, semestrais e anuais. Os planos mais longos (semestral e anual) oferecem descontos e a avaliação presencial completa gratuita para quem é de Itajaí e região.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">4. O treino é feito em aplicativo ou planilha? <i class="fas fa-chevron-down"></i></button>
+                        <div class="faq-answer"><p>A estrutura de entrega é flexível, geralmente via link no Google Drive ou um aplicativo específico, onde você acessa a planilha de periodização e todos os vídeos de execução (com nossa didática).</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-final reveal">
+            <div class="container">
+                <h2>Seu corpo merece estratégia,<br>não tentativa e erro.</h2>
+                <br>
+                <a href="#" class="btn btn-primary btn-large whatsapp-triage-btn">👉 QUERO INICIAR MINHA CONSULTORIA</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="assets/logo.png" alt="Logo" class="footer-logo" style="width:150px; opacity: 0.9;">
+                    <p style="margin-top: 15px; font-size: 0.9rem;">Descomplicando o Movimento © 2025<br>Todos os direitos reservados.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="mentoria.html">Mentoria</a></li>
+                        <li><a href="consultoria.html">Consultoria</a></li>
+                        <li><a href="planilhas.html">Planilhas</a></li> 
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contato</h4>
+                    
+                    <div class="contact-info-item">
+                        <i class="fas fa-envelope"></i> 
+                        <span class="email-text">descomplicandoomovimento@gmail.com</span>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <a href="https://wa.me/5547999382595" target="_blank">
+                            <i class="fab fa-whatsapp"></i> WhatsApp: (47) 99938-2595
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Siga-nos</h4>
+                    <ul class="social-links">
+                        <li>
+                            <a href="https://www.instagram.com/descomplicando_omovimento" target="_blank">
+                                <i class="fab fa-instagram"></i> @descomplicando_omovimento
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <a href="#" class="whatsapp-float whatsapp-triage-btn"><i class="fab fa-whatsapp"></i></a>
+
+    <div id="video-modal" class="triage-modal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-content-wrapper">
+            <div class="video-modal-container">
+                <span class="close-btn video-close-btn" id="close-video-btn">&times;</span>
+                <div class="video-responsive">
+                    <video id="promo-video" controls playsinline>
+                        <source src="assets/consultoria/fundo-consultoria.mp4" type="video/mp4">
+                        Seu navegador não suporta vídeos.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="triage-modal" class="triage-modal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-content-wrapper">
+            <div class="triage-form-container">
+                <span class="close-btn" aria-label="Fechar" id="close-triage-btn" style="top: 15px; right: 15px; width: 40px; height: 40px; font-size: 1.5rem; background: rgba(255,255,255,0.05);">&times;</span>
+                
+                <div class="triage-header">
+                    <h3>Triagem Consultoria</h3>
+                    <p>Entendendo seu Perfil Físico</p>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                
+                <form id="triage-form">
+                    
+                    <div class="form-step active">
+                        <div class="triage-form-group">
+                            <label for="triage-nome">1. Como podemos te chamar?</label>
+                            <input type="text" id="triage-nome" placeholder="Digite seu nome completo" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-step">
+                        <div class="triage-form-group">
+                            <label>2. Qual a sua faixa etária?</label>
+                            <div class="custom-radio-group">
+                                <input type="radio" id="idade1" name="triage-idade" value="18 a 25 anos" required>
+                                <label for="idade1">Entre 18 e 25 anos</label>
+                                
+                                <input type="radio" id="idade2" name="triage-idade" value="26 a 35 anos">
+                                <label for="idade2">Entre 26 e 35 anos</label>
+                                
+                                <input type="radio" id="idade3" name="triage-idade" value="36 a 45 anos">
+                                <label for="idade3">Entre 36 e 45 anos</label>
+                                
+                                <input type="radio" id="idade4" name="triage-idade" value="Acima de 45 anos">
+                                <label for="idade4">Acima de 45 anos</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-step">
+                        <div class="triage-form-group">
+                            <label for="triage-medidas">3. Qual sua Altura e Peso atuais?</label>
+                            <input type="text" id="triage-medidas" placeholder="Ex: 1.75m / 75kg" required>
+                        </div>
+                    </div>
+
+                    <div class="form-step">
+                        <div class="triage-form-group">
+                            <label>4. Possui alguma dor ou limitação principal?</label>
+                            <div class="custom-radio-group">
+                                <input type="radio" id="lesao-nenhuma" name="triage-lesao" value="Nenhuma lesão" required>
+                                <label for="lesao-nenhuma">Não, nenhuma dor/lesão</label>
+                                
+                                <input type="radio" id="lesao-joelho" name="triage-lesao" value="Dor/Lesão no Joelho">
+                                <label for="lesao-joelho">Dor ou Lesão no Joelho</label>
+                                
+                                <input type="radio" id="lesao-coluna" name="triage-lesao" value="Dor/Lesão na Coluna ou Lombar">
+                                <label for="lesao-coluna">Dor ou Lesão na Coluna / Lombar</label>
+                                
+                                <input type="radio" id="lesao-ombro" name="triage-lesao" value="Dor/Lesão no Ombro">
+                                <label for="lesao-ombro">Dor ou Lesão no Ombro</label>
+                                
+                                <input type="radio" id="lesao-outra" name="triage-lesao" value="Outra lesão (Explicarei no Whats)">
+                                <label for="lesao-outra">Outra (Avisarei no WhatsApp)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-step">
+                        <div class="triage-form-group">
+                            <label>5. Qual é seu objetivo principal com o treino?</label>
+                            <div class="custom-radio-group">
+                                <input type="radio" id="obj-hiper" name="triage-objetivo" value="Hipertrofia" required>
+                                <label for="obj-hiper">Hipertrofia (Ganho de Massa Muscular)</label>
+                                
+                                <input type="radio" id="obj-emag" name="triage-objetivo" value="Emagrecimento">
+                                <label for="obj-emag">Emagrecimento (Perda de Gordura)</label>
+                                
+                                <input type="radio" id="obj-saude" name="triage-objetivo" value="Saúde e Postura">
+                                <label for="obj-saude">Saúde, Postura e Qualidade de Vida</label>
+                                
+                                <input type="radio" id="obj-dor" name="triage-objetivo" value="Tratamento de Dor/Lesão">
+                                <label for="obj-dor">Tratamento de Dores / Recuperação</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-step">
+                        <div class="triage-form-group">
+                            <label>6. Quantos dias por semana você consegue treinar?</label>
+                            <div class="custom-radio-group">
+                                <input type="radio" id="dias2" name="triage-dias" value="2 dias" required>
+                                <label for="dias2">2 dias</label>
+                                
+                                <input type="radio" id="dias3" name="triage-dias" value="3 dias">
+                                <label for="dias3">3 dias</label>
+                                
+                                <input type="radio" id="dias4" name="triage-dias" value="4 dias">
+                                <label for="dias4">4 dias</label>
+                                
+                                <input type="radio" id="dias5+" name="triage-dias" value="5 ou 6 dias">
+                                <label for="dias5+">5 a 6 dias</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-step">
+                        <div class="triage-form-group">
+                            <label>7. Onde você vai realizar seus treinos?</label>
+                            <div class="custom-radio-group">
+                                <input type="radio" id="loc-acad" name="triage-local" value="Academia" required>
+                                <label for="loc-acad">Academia</label>
+                                
+                                <input type="radio" id="loc-casa" name="triage-local" value="Casa">
+                                <label for="loc-casa">Em Casa</label>
+                                
+                                <input type="radio" id="loc-ambos" name="triage-local" value="Ambos">
+                                <label for="loc-ambos">Ambos (Academia e Casa)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-step">
+                        <div class="triage-form-group">
+                            <label>8. Já fez acompanhamento profissional antes?</label>
+                            <div class="custom-radio-group">
+                                <input type="radio" id="hist-pres" name="triage-historico" value="Sim, presencial" required>
+                                <label for="hist-pres">Sim, com Personal presencial</label>
+                                
+                                <input type="radio" id="hist-on" name="triage-historico" value="Sim, consultoria online">
+                                <label for="hist-on">Sim, consultoria online</label>
+                                
+                                <input type="radio" id="hist-nao" name="triage-historico" value="Nunca fiz">
+                                <label for="hist-nao">Não, nunca fiz</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-step">
+                        <div class="triage-form-group">
+                            <label>9. Em quanto tempo você quer começar?</label>
+                            <div class="custom-radio-group">
+                                <input type="radio" id="ini-imediato" name="triage-inicio" value="Imediatamente" required>
+                                <label for="ini-imediato">O mais rápido possível (Pronto para fechar)</label>
+                                
+                                <input type="radio" id="ini-semana" name="triage-inicio" value="Nesta semana">
+                                <label for="ini-semana">Ainda nesta semana</label>
+                                
+                                <input type="radio" id="ini-pesquisa" name="triage-inicio" value="Apenas pesquisando">
+                                <label for="ini-pesquisa">Estou apenas pesquisando valores por enquanto</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="triage-navigation">
+                        <button type="button" class="btn-prev" id="btn-prev" style="display: none;"><i class="fas fa-arrow-left"></i> Voltar</button>
+                        <button type="button" class="btn btn-primary btn-next" id="btn-next">Próximo <i class="fas fa-arrow-right"></i></button>
+                        <button type="submit" class="btn btn-primary triage-submit-btn" id="btn-submit" style="display: none;">Concluir e Falar no WhatsApp <i class="fab fa-whatsapp"></i></button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toast-container"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // SCROLL REVEAL
+            const reveals = document.querySelectorAll('.reveal');
+            const header = document.getElementById('header');
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+                reveals.forEach((reveal) => { if (reveal.getBoundingClientRect().top < windowHeight - 50) reveal.classList.add('active'); });
+            };
+            window.addEventListener('scroll', () => {
+                revealOnScroll();
+                const isMenuOpen = header.classList.contains('menu-open-bg');
+                if (window.scrollY > 50) header.classList.add('scrolled');
+                else if (!isMenuOpen) header.classList.remove('scrolled');
+            });
+            revealOnScroll();
+
+            // MENU MOBILE
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navMenuMobile = document.querySelector('.nav-menu-mobile');
+            const mobileLinks = document.querySelectorAll('.nav-menu-mobile a');
+
+            if (menuToggle && navMenuMobile) {
+                menuToggle.addEventListener('click', function() {
+                    const isActive = menuToggle.classList.toggle('active');
+                    navMenuMobile.classList.toggle('active');
+                    navMenuMobile.setAttribute('aria-hidden', !isActive);
+                    document.body.classList.toggle('modal-open', isActive);
+                    if(isActive) header.classList.add('menu-open-bg');
+                    else if (window.scrollY <= 50) header.classList.remove('menu-open-bg');
+                    menuToggle.setAttribute('aria-expanded', isActive);
+                });
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        menuToggle.classList.remove('active');
+                        navMenuMobile.classList.remove('active');
+                        navMenuMobile.setAttribute('aria-hidden', 'true');
+                        document.body.classList.remove('modal-open');
+                        if (window.scrollY <= 50) header.classList.remove('menu-open-bg');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    });
+                });
+            }
+
+            // FAQ
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const icon = question.querySelector('i');
+                    
+                    document.querySelectorAll('.faq-question').forEach(q => {
+                        if (q !== question) {
+                            q.nextElementSibling.style.maxHeight = null;
+                            q.querySelector('i').style.transform = 'rotate(0deg)';
+                        }
+                    });
+
+                    if (answer.style.maxHeight) { answer.style.maxHeight = null; icon.style.transform = 'rotate(0deg)'; } 
+                    else { answer.style.maxHeight = answer.scrollHeight + "px"; icon.style.transform = 'rotate(180deg)'; }
+                });
+            });
+
+            // CAROUSEL & SLIDER
+            const galleryCarousel = document.getElementById('gallery-carousel');
+            const sliderContainer = document.querySelector('.slider-container');
+            
+            if(galleryCarousel) {
+                const galleryNext = document.getElementById('gallery-next');
+                const galleryPrev = document.getElementById('gallery-prev');
+                if(galleryNext) galleryNext.addEventListener('click', () => galleryCarousel.scrollBy({ left: 300, behavior: 'smooth' }));
+                if(galleryPrev) galleryPrev.addEventListener('click', () => galleryCarousel.scrollBy({ left: -300, behavior: 'smooth' }));
+                
+                let isDown = false, startX, scrollLeft;
+                galleryCarousel.addEventListener('mousedown', (e) => { isDown = true; startX = e.pageX - galleryCarousel.offsetLeft; scrollLeft = galleryCarousel.scrollLeft; });
+                galleryCarousel.addEventListener('mouseleave', () => { isDown = false; });
+                galleryCarousel.addEventListener('mouseup', () => { isDown = false; });
+                galleryCarousel.addEventListener('mousemove', (e) => { if(!isDown) return; e.preventDefault(); const x = e.pageX - galleryCarousel.offsetLeft; galleryCarousel.scrollLeft = scrollLeft - (x - startX) * 2; });
+            }
+
+            if(sliderContainer) {
+                const slides = document.querySelectorAll('.testimonial-slider .slide');
+                const nextBtn = sliderContainer.querySelector('.next-btn');
+                const prevBtn = sliderContainer.querySelector('.prev-btn');
+                let currentSlide = 0;
+                let autoSlideTimer;
+
+                function goToSlide(index) {
+                    if (slides[currentSlide]) slides[currentSlide].classList.remove('active-slide');
+                    currentSlide = (index + slides.length) % slides.length;
+                    if (slides[currentSlide]) slides[currentSlide].classList.add('active-slide');
+                }
+                function resetTimer() {
+                    clearInterval(autoSlideTimer);
+                    autoSlideTimer = setInterval(() => goToSlide(currentSlide + 1), 6000);
+                }
+                if (slides.length > 0) {
+                    if (slides[0]) slides[0].classList.add('active-slide');
+                    if(nextBtn) nextBtn.addEventListener('click', () => { goToSlide(currentSlide + 1); resetTimer(); });
+                    if(prevBtn) prevBtn.addEventListener('click', () => { goToSlide(currentSlide - 1); resetTimer(); });
+                    resetTimer();
+                }
+            }
+
+            // ==========================================
+            // LÓGICA DO VÍDEO MODAL
+            // ==========================================
+            const videoModal = document.getElementById('video-modal');
+            const videoModalBtns = document.querySelectorAll('.video-modal-btn');
+            const closeVideoBtn = document.getElementById('close-video-btn');
+            const promoVideo = document.getElementById('promo-video');
+
+            const closeVideoModal = () => {
+                if(videoModal.classList.contains('show')) {
+                    videoModal.classList.remove('show');
+                    setTimeout(() => {
+                        videoModal.classList.remove('active');
+                        document.body.classList.remove('modal-open');
+                        if(promoVideo) promoVideo.pause(); // Pausa o vídeo ao fechar
+                    }, 400);
+                }
+            }
+
+            videoModalBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    videoModal.classList.add('active');
+                    setTimeout(() => videoModal.classList.add('show'), 10);
+                    document.body.classList.add('modal-open');
+                    if(promoVideo) promoVideo.play(); // Da play no vídeo ao abrir
+                });
+            });
+
+            if(closeVideoBtn) closeVideoBtn.addEventListener('click', closeVideoModal);
+
+
+            // ==========================================
+            // SISTEMA DE TOAST E TRIAGEM (TYPEFORM)
+            // ==========================================
+            function showToast(message) {
+                const container = document.getElementById('toast-container');
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+                container.appendChild(toast);
+                
+                setTimeout(() => toast.classList.add('show'), 10);
+                
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => toast.remove(), 400); 
+                }, 3500);
+            }
+
+            const triageModal = document.getElementById('triage-modal');
+            const closeTriageBtn = document.getElementById('close-triage-btn');
+            const triageBtns = document.querySelectorAll('.whatsapp-triage-btn');
+            const triageForm = document.getElementById('triage-form');
+            
+            const steps = Array.from(document.querySelectorAll('.form-step'));
+            const btnNext = document.getElementById('btn-next');
+            const btnPrev = document.getElementById('btn-prev');
+            const btnSubmit = document.getElementById('btn-submit');
+            const progressBar = document.getElementById('progress-bar');
+            let currentStep = 0;
+
+            const closeTriageModal = () => {
+                if(triageModal.classList.contains('show')){
+                    triageModal.classList.remove('show');
+                    setTimeout(() => {
+                        triageModal.classList.remove('active');
+                        document.body.classList.remove('modal-open');
+                        currentStep = 0;
+                        updateFormUI();
+                        triageForm.reset();
+                    }, 400);
+                }
+            }
+
+            triageBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    currentStep = 0;
+                    updateFormUI();
+                    triageModal.classList.add('active');
+                    setTimeout(() => triageModal.classList.add('show'), 10);
+                    document.body.classList.add('modal-open');
+                });
+            });
+
+            if(closeTriageBtn) closeTriageBtn.addEventListener('click', closeTriageModal);
+
+            window.addEventListener('click', (e) => { 
+                if (triageModal && (e.target === triageModal || (e.target.classList.contains('modal-content-wrapper') && triageModal.classList.contains('active')))) closeTriageModal();
+                if (videoModal && (e.target === videoModal || (e.target.classList.contains('modal-content-wrapper') && videoModal.classList.contains('active')))) closeVideoModal();
+            });
+
+            // Lógica de avanço/recuo
+            function updateFormUI() {
+                steps.forEach((step, index) => {
+                    step.classList.toggle('active', index === currentStep);
+                });
+
+                const progressPercentage = ((currentStep + 1) / steps.length) * 100;
+                progressBar.style.width = `${progressPercentage}%`;
+
+                btnPrev.style.display = currentStep === 0 ? 'none' : 'block';
+
+                if (currentStep === steps.length - 1) {
+                    btnNext.style.display = 'none';
+                    btnSubmit.style.display = 'block';
+                } else {
+                    btnNext.style.display = 'block';
+                    btnSubmit.style.display = 'none';
+                }
+
+                const currentInput = steps[currentStep].querySelector('input[type="text"], input[type="number"], textarea');
+                
+                // MUDANÇA: Só dá auto-focus se estiver no computador. Isso evita que no celular o teclado abra do nada e estrague a visualização do modal!
+                if (currentInput && window.innerWidth > 768) {
+                    setTimeout(() => currentInput.focus(), 100);
+                }
+            }
+
+            // Validação inteligente
+            function validateCurrentStep() {
+                const currentStepEl = steps[currentStep];
+                
+                // Valida campo de texto
+                const textInput = currentStepEl.querySelector('input[type="text"], input[type="number"], textarea');
+                if (textInput && textInput.hasAttribute('required') && !textInput.value.trim()) {
+                    return false;
+                }
+                
+                // Valida os radios customizados
+                const radioGroup = currentStepEl.querySelector('.custom-radio-group');
+                if (radioGroup) {
+                    const checkedRadio = radioGroup.querySelector('input[type="radio"]:checked');
+                    if (!checkedRadio) return false;
+                }
+
+                return true;
+            }
+
+            btnNext.addEventListener('click', () => {
+                if (validateCurrentStep()) {
+                    currentStep++;
+                    updateFormUI();
+                } else {
+                    showToast("Por favor, selecione uma opção ou preencha o campo.");
+                }
+            });
+
+            btnPrev.addEventListener('click', () => {
+                currentStep--;
+                updateFormUI();
+            });
+
+            // Avançar automaticamente ao clicar num Radio Button
+            const customRadios = document.querySelectorAll('.custom-radio-group input[type="radio"]');
+            customRadios.forEach(radio => {
+                radio.addEventListener('change', () => {
+                    setTimeout(() => {
+                        if (currentStep < steps.length - 1) {
+                            btnNext.click();
+                        }
+                    }, 350); 
+                });
+            });
+
+            triageForm.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+                    e.preventDefault();
+                    if (currentStep < steps.length - 1) {
+                        btnNext.click();
+                    } else {
+                        if (validateCurrentStep()) {
+                            btnSubmit.click();
+                        } else {
+                            showToast("Por favor, selecione uma opção ou preencha o campo.");
+                        }
+                    }
+                }
+            });
+
+            // 8. ENVIO DO FORMULÁRIO DE TRIAGEM
+            triageForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                if (!validateCurrentStep()) {
+                    showToast("Preencha esta informação antes de enviar.");
+                    return;
+                }
+
+                const nome = document.getElementById('triage-nome').value.trim();
+                const medidas = document.getElementById('triage-medidas').value.trim();
+                
+                // Pegando os valores selecionados via botões (radio)
+                const idade = document.querySelector('input[name="triage-idade"]:checked')?.value || "Não informado";
+                const lesao = document.querySelector('input[name="triage-lesao"]:checked')?.value || "Não informado";
+                const objetivo = document.querySelector('input[name="triage-objetivo"]:checked')?.value || "Não informado";
+                
+                const dias = document.querySelector('input[name="triage-dias"]:checked')?.value || "Não informado";
+                const local = document.querySelector('input[name="triage-local"]:checked')?.value || "Não informado";
+                const historico = document.querySelector('input[name="triage-historico"]:checked')?.value || "Não informado";
+                const inicio = document.querySelector('input[name="triage-inicio"]:checked')?.value || "Não informado";
+
+                const mensagem = `Olá, equipe! Gostaria de iniciar a Consultoria.\n\n` +
+                                 `*Nome:* ${nome}\n` +
+                                 `*Idade:* ${idade}\n` +
+                                 `*Altura/Peso:* ${medidas}\n` +
+                                 `*Lesões/Limitações:* ${lesao}\n` +
+                                 `*Objetivo:* ${objetivo}\n` +
+                                 `*Treinos/semana:* ${dias}\n` +
+                                 `*Local:* ${local}\n` +
+                                 `*Histórico:* ${historico}\n` +
+                                 `*Início desejado:* ${inicio}`;
+
+                closeTriageModal();
+                
+                const numeroWhatsapp = "5547999382595"; 
+                const url = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensagem)}`;
+                
+                window.open(url, '_blank');
+            });
+
+            // Esc fecha os modais
+            document.addEventListener('keydown', (e) => { 
+                if (e.key === 'Escape') {
+                    closeTriageModal();
+                    closeVideoModal();
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>

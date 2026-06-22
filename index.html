@@ -1,0 +1,1164 @@
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Transforme seu treino com base em ciência. Mentoria profissional e consultoria online com Adrian Farias e Lucas Nunes.">
+        <link rel="icon" href="assets/favicon.png" type="image/png">
+        
+        <title>Descomplicando o Movimento - Ciência Aplicada ao Treino</title>
+        
+        <meta property="og:title" content="Descomplicando o Movimento - Treino e Ciência">
+        <meta property="og:description" content="Transforme seu treino com base em ciência. Consultoria online e mentoria.">
+        <meta property="og:url" content="https://descomplicandoomovimento.netlify.app/">
+        <meta property="og:type" content="website">
+        <meta property="og:image" itemprop="image" content="https://descomplicandoomovimento.netlify.app/assets/logo.jpeg">
+        <meta property="og:image:secure_url" content="https://descomplicandoomovimento.netlify.app/assets/logo.jpeg">
+        <meta property="og:image:type" content="image/jpeg">
+        <meta property="og:image:width" content="600">
+        <meta property="og:image:height" content="600">
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        
+        <style>
+            /* =========================================
+            1. VARIÁVEIS E RESET
+            ========================================= */
+            :root {
+                --color-black: #050505;
+                --color-gray-dark: #0f0f0f;
+                --color-gray-medium: #1a1a1a;
+                --color-gray-border: #333333;
+                --color-white: #FFFFFF;
+                --color-text-muted: #b0b0b0;
+                --color-red: #E50914; 
+                --color-red-dark: #b00610;
+                --color-red-glow: rgba(229, 9, 20, 0.6);
+                --color-gold: #FFD700;
+                --color-whatsapp: #25D366;
+                --font-main: 'Montserrat', sans-serif;
+                --header-height-desktop: 90px;
+                --header-height-mobile: 80px; 
+                --transition-fast: 0.3s ease;
+                --transition-smooth: 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            }
+
+            * { 
+                margin: 0; 
+                padding: 0; 
+                box-sizing: border-box; 
+                -webkit-tap-highlight-color: transparent; 
+                outline: none;
+            }
+
+            html { scroll-behavior: smooth; }
+            body {
+                font-family: var(--font-main);
+                background-color: var(--color-black);
+                color: var(--color-white);
+                line-height: 1.6;
+                overflow-x: hidden;
+                -webkit-font-smoothing: antialiased;
+                background-image: radial-gradient(circle at 50% 0%, #1a1a1a 0%, #050505 100%);
+            }
+            body.modal-open { overflow: hidden; }
+
+            /* =========================================
+            2. TIPOGRAFIA E CONTAINER
+            ========================================= */
+            h1, h2, h3, h4 { font-weight: 800; color: var(--color-white); line-height: 1.2; letter-spacing: -0.5px; }
+
+            h1 { 
+                font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: 1.5rem; text-transform: uppercase; 
+                text-shadow: 0 4px 30px rgba(0,0,0,0.8); animation: fadeInDown 1s ease-out;
+            }
+            
+            h2 { font-size: clamp(2rem, 4vw, 2.8rem); text-align: center; margin-bottom: 60px; position: relative; padding-bottom: 20px; width: 100%; }
+            h2::after {
+                content: ''; display: block; width: 80px; height: 4px; background: linear-gradient(90deg, transparent, var(--color-red), transparent);
+                position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); border-radius: 2px;
+            }
+
+            h3 { font-size: 1.6rem; margin-bottom: 10px; font-weight: 700; color: var(--color-white); }
+            p { color: var(--color-text-muted); margin-bottom: 1rem; font-weight: 400; font-size: 1rem; }
+            
+            a { text-decoration: none; color: inherit; transition: 0.3s ease; }
+            ul { list-style: none; }
+            img { max-width: 100%; height: auto; display: block; }
+
+            .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; width: 100%; }
+            section { padding: 100px 0; position: relative; }
+            
+            /* =========================================
+            3. ANIMAÇÕES
+            ========================================= */
+            .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+            .reveal.active { opacity: 1; transform: translateY(0); }
+            .stagger-delay-1 { transition-delay: 0.1s; }
+            .stagger-delay-2 { transition-delay: 0.2s; }
+            .stagger-delay-3 { transition-delay: 0.3s; }
+            .stagger-delay-4 { transition-delay: 0.4s; }
+
+            @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+            @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(229, 9, 20, 0); } 100% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0); } }
+            @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+
+            /* =========================================
+            4. BOTÕES E FLOAT (PADRONIZADO COM PLANILHAS)
+            ========================================= */
+            .btn { 
+                display: inline-flex; 
+                align-items: center; 
+                justify-content: center; 
+                padding: 14px 35px; 
+                border-radius: 50px; 
+                font-weight: 700; 
+                text-transform: uppercase; 
+                letter-spacing: 1px; 
+                transition: all 0.3s ease; 
+                cursor: pointer; 
+                border: none; 
+                font-size: 0.85rem; 
+                gap: 10px; 
+                position: relative; 
+                z-index: 20; 
+                color: #fff; 
+                width: auto; 
+                max-width: fit-content; 
+                white-space: nowrap; 
+            }
+
+            .btn-primary { 
+                background: linear-gradient(135deg, var(--color-red) 0%, var(--color-red-dark) 100%); 
+                box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3); 
+            }
+
+            .btn-primary:hover { 
+                transform: translateY(-3px); 
+                box-shadow: 0 8px 25px rgba(229, 9, 20, 0.6); 
+            }
+
+            .btn-play-pulse { display: flex; align-items: center; gap: 15px; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 5px 20px 5px 5px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.3); color: var(--color-white); font-weight: 600; cursor: pointer; transition: all 0.3s ease; z-index: 20; position: relative; }
+            .play-icon-circle { width: 45px; height: 45px; background: linear-gradient(135deg, var(--color-red), var(--color-red-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; animation: pulse-red 2s infinite; box-shadow: 0 0 15px var(--color-red-glow); }
+            .btn-play-pulse:hover { background: rgba(255, 255, 255, 0.2); transform: scale(1.05); border-color: rgba(255,255,255,0.6); }
+
+            .volume-control-center { margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 10px; cursor: pointer; z-index: 101; pointer-events: auto; }
+            .btn-volume-round { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.5); color: #fff; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; font-size: 1.2rem; }
+            .volume-control-center:hover .btn-volume-round { background: var(--color-red); border-color: var(--color-red); transform: scale(1.1); }
+            .volume-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; font-weight: 500; }
+            
+            .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background-color: var(--color-whatsapp); color: #FFF; width: 65px; height: 65px; border-radius: 50%; text-align: center; font-size: 32px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); z-index: 999999; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; animation: pulse-green 2s infinite; }
+            .whatsapp-float:hover { background-color: #128C7E; transform: scale(1.1) translateY(-5px); color: #FFF; }
+            .whatsapp-float::before { content: "Fale Conosco"; position: absolute; right: 75px; background: #fff; color: #333; padding: 8px 15px; border-radius: 20px; font-size: 14px; font-weight: 700; white-space: nowrap; opacity: 0; visibility: hidden; transition: 0.3s; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); pointer-events: none; }
+            .whatsapp-float:hover::before { opacity: 1; visibility: visible; right: 80px; }
+
+            /* =========================================
+            5. CABEÇALHO & MENU
+            ========================================= */
+            .site-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 2000; height: var(--header-height-desktop); background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%); transition: all 0.4s ease; display: flex; align-items: center; }
+            .site-header.scrolled, .site-header.menu-open-bg { background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.05); height: 80px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+            .main-nav-desktop { display: flex; justify-content: space-between; align-items: center; width: 100%; height: 100%; }
+            .nav-left, .nav-right { display: flex; align-items: center; flex: 1; }
+            .nav-right { justify-content: flex-end; gap: 20px; }
+            .logo { flex: 0 0 auto; margin: 0 30px; position: relative; z-index: 2005; }
+            .logo img { height: 55px; transition: 0.3s; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+            .site-header.scrolled .logo img { height: 45px; }
+
+            .nav-menu { display: flex; gap: 30px; list-style: none; align-items: center; }
+            .nav-menu li a:not(.btn) { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; position: relative; opacity: 0.9; padding: 5px 0; color: var(--color-white); letter-spacing: 0.5px; }
+            .nav-menu li a:not(.btn):hover { opacity: 1; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+            .nav-menu li a:not(.btn):after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0%; height: 2px; background: var(--color-red); transition: 0.3s; box-shadow: 0 0 5px var(--color-red); }
+            .nav-menu li a:not(.btn):hover:after { width: 100%; }
+
+            .main-nav-mobile { display: none; }
+            .nav-menu-mobile { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #000; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 30px; transform: translateX(100%); transition: 0.4s cubic-bezier(0.77, 0, 0.175, 1); z-index: 1999; padding: 80px 20px 20px 20px; list-style: none; }
+            .nav-menu-mobile.active { transform: translateX(0); }
+            
+            .nav-menu-mobile li a:not(.btn) { font-size: 1.5rem; font-weight: 700; color: #fff; -webkit-tap-highlight-color: transparent; }
+            .nav-menu-mobile li a:not(.btn):hover { color: var(--color-red); }
+            .nav-menu-mobile li a.btn { font-size: 1rem; width: 100%; max-width: 280px; padding: 14px 20px; }
+
+            .menu-toggle { display: none; background: none; border: none; cursor: pointer; z-index: 2002; padding: 10px; }
+            .menu-toggle span { display: block; width: 30px; height: 2px; background: #fff; margin: 6px 0; transition: 0.3s; }
+            .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); background: var(--color-red); }
+            .menu-toggle.active span:nth-child(2) { opacity: 0; }
+            .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); background: var(--color-red); }
+
+            /* =========================================
+            6. HERO SECTION
+            ========================================= */
+            .hero { height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; z-index: 1; }
+            .video-player { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; width: auto; height: auto; object-fit: cover; object-position: center; z-index: -2; pointer-events: none; }
+            .video-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.95) 100%); z-index: -1; }
+            .hero-content { position: relative; z-index: 5; max-width: 900px; padding: 0 20px; display: flex; flex-direction: column; align-items: center; }
+            .hero-cta-buttons { display: flex; justify-content: center; align-items: center; gap: 25px; margin-top: 40px; flex-wrap: wrap; position: relative; z-index: 20; }
+
+            /* =========================================
+            7. QUEM SOMOS
+            ========================================= */
+            .quem-somos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 60px; align-items: flex-end; }
+            .perfil-block { position: relative; background: transparent; border: none; overflow: visible; transition: 0.5s cubic-bezier(0.25, 1, 0.5, 1); display: flex; flex-direction: column; align-items: center; }
+            .perfil-block:hover { transform: translateY(-10px); }
+            .perfil-block-img { width: 100%; max-width: 450px; height: auto; object-fit: contain; filter: drop-shadow(0 0 0 transparent); transition: all 0.5s ease; -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, black 85%, transparent 100%); z-index: 1; position: relative; }
+            .perfil-block:hover .perfil-block-img { transform: scale(1.03); filter: drop-shadow(0 0 20px rgba(229, 9, 20, 0.5)); }
+            .perfil-card { position: absolute; bottom: 0; left: 0; width: 100%; padding: 80px 20px 20px; text-align: center; z-index: 2; background: linear-gradient(to top, #050505 15%, rgba(5,5,5,0.8) 50%, transparent 100%); border-bottom: 3px solid var(--color-red); border-radius: 0 0 10px 10px; }
+            .perfil-card h3 { font-size: 1.5rem; text-transform: uppercase; text-shadow: 0 2px 10px rgba(0,0,0,1); margin-bottom: 5px; }
+            .cref { color: var(--color-red); font-weight: 700; font-size: 0.9rem; display: block; margin-bottom: 10px; letter-spacing: 1px; text-shadow: 0 0 10px rgba(229, 9, 20, 0.8); }
+            .perfil-card p { font-size: 0.95rem; color: #ccc; text-shadow: 0 2px 4px rgba(0,0,0,1); max-width: 90%; margin: 0 auto; }
+            .empresa-card { text-align: center; max-width: 800px; margin: 80px auto 0; padding: 60px; background: linear-gradient(145deg, #121212, #0a0a0a); border-radius: 20px; border: 1px solid var(--color-gray-border); box-shadow: 0 20px 50px rgba(0,0,0,0.5); position: relative; }
+
+            /* =========================================
+            8. DEPOIMENTOS & GALERIA
+            ========================================= */
+            .testimonial-section { background-color: #080808; background-image: radial-gradient(at top right, #151515 0%, transparent 40%); }
+            .gallery-carousel { display: flex; overflow-x: auto; gap: 20px; padding: 20px 20px 40px 20px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; cursor: grab; }
+            .gallery-carousel::-webkit-scrollbar { display: none; }
+            .gallery-carousel.active { cursor: grabbing; }
+            .gallery-item { flex: 0 0 300px; width: 300px; aspect-ratio: 4/5; border-radius: 15px; overflow: hidden; scroll-snap-align: center; border: 1px solid var(--color-gray-border); position: relative; transition: 0.3s; background: #111; }
+            .gallery-item:hover { border-color: var(--color-white); transform: scale(1.02); z-index: 10; }
+            .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+            .gallery-instruction { text-align: center; font-size: 0.8rem; color: var(--color-red); margin-bottom: 10px; opacity: 0.9; text-transform: uppercase; letter-spacing: 1px; }
+            .gallery-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: #fff; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #333; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; transition: 0.3s; opacity: 0; pointer-events: none; }
+            .gallery-wrapper:hover .gallery-btn { opacity: 1; pointer-events: all; }
+            .gallery-btn:hover { background: var(--color-red); border-color: var(--color-red); }
+            .gallery-prev { left: 10px; }
+            .gallery-next { right: 10px; }
+
+            .slider-container { max-width: 900px; margin: 0 auto; padding: 60px 50px; background: rgba(20, 20, 20, 0.8); border-radius: 20px; border: 1px solid var(--color-gray-border); text-align: center; position: relative; backdrop-filter: blur(10px); }
+            .testimonial-slider { position: relative; width: 100%; min-height: 250px; }
+            .slide { position: absolute; top: 0; left: 0; width: 100%; opacity: 0; visibility: hidden; transition: all 0.5s ease; transform: translateX(20px); padding: 20px; }
+            .slide.active-slide { opacity: 1; visibility: visible; position: relative; transform: translateX(0); }
+            .slide p { font-size: 1.2rem; font-style: italic; margin-bottom: 10px; line-height: 1.8; color: #e0e0e0; }
+            .slide i.fa-quote-left { color: var(--color-red); font-size: 2rem; margin-bottom: 20px; display: block; text-shadow: 0 0 10px var(--color-red-glow); }
+            .stars { color: var(--color-gold); margin-bottom: 25px; font-size: 1.1rem; text-shadow: 0 0 10px rgba(255, 215, 0, 0.4); }
+            .profile-pic { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid var(--color-red); box-shadow: 0 0 10px var(--color-red-glow); }
+            .profile-info { text-align: left; display: flex; flex-direction: column; margin-left: 15px; }
+            .testimonial-profile { display: flex; align-items: center; justify-content: center; margin-top: 20px; }
+            .profile-name { font-weight: 700; color: #fff; font-size: 1.1rem; }
+            .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.05); width: 45px; height: 45px; border-radius: 50%; border: none; color: #fff; font-size: 1.2rem; cursor: pointer; transition: 0.3s; z-index: 10; display: flex; align-items: center; justify-content: center; }
+            .slider-btn:hover { background: var(--color-red); box-shadow: 0 0 15px var(--color-red-glow); }
+            .prev-btn { left: -25px; }
+            .next-btn { right: -25px; }
+
+            /* =========================================
+            9. SERVIÇOS
+            ========================================= */
+            .servicos { background: linear-gradient(to bottom, #050505, #0f0f0f); }
+            .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; margin-top: 60px; }
+            .servico-card { background: linear-gradient(160deg, #1a1a1a 0%, #0d0d0d 100%); padding: 40px 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); text-align: center; transition: 0.5s cubic-bezier(0.25, 1, 0.5, 1); display: flex; flex-direction: column; align-items: center; position: relative; overflow: hidden; height: 100%; }
+            .servico-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--color-red); transform: scaleX(0); transform-origin: left; transition: 0.4s ease; }
+            .servico-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.6); border-color: rgba(255,255,255,0.1); background: linear-gradient(160deg, #222 0%, #111 100%); }
+            .servico-card:hover::before { transform: scaleX(1); }
+            .icon-box { width: 80px; height: 80px; background: rgba(255,255,255,0.03); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; font-size: 2rem; color: var(--color-red); transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55); border: 1px solid rgba(255,255,255,0.05); }
+            .servico-card:hover .icon-box { background: var(--color-red); color: #fff; box-shadow: 0 0 20px var(--color-red-glow); transform: rotateY(360deg); }
+            .servico-card h3 { font-size: 1.4rem; margin-bottom: 15px; color: #fff; }
+            .servico-card p { font-size: 0.95rem; color: #aaa; margin-bottom: 30px; line-height: 1.5; flex-grow: 1; }
+            .servico-card .btn { margin-top: auto; width: auto; min-width: 150px; background: transparent; border: 1px solid var(--color-red); color: var(--color-red); }
+            .servico-card:hover .btn { background: var(--color-red); color: var(--color-white); box-shadow: 0 5px 15px rgba(229, 9, 20, 0.4); }
+
+            .cta-final { background: linear-gradient(135deg, #000 0%, #1a0202 100%); padding: 100px 20px; text-align: center; margin: 80px 20px; border-radius: 30px; border: 1px solid rgba(229, 9, 20, 0.3); box-shadow: 0 0 50px rgba(229, 9, 20, 0.1); position: relative; overflow: hidden; }
+
+            /* =========================================
+            10. FOOTER (RODAPÉ)
+            ========================================= */
+            footer { background: #020202; padding: 80px 0 30px; border-top: 1px solid #151515; }
+            .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 60px; margin-bottom: 60px; }
+            .footer-col h4 { margin-bottom: 25px; font-size: 1.1rem; color: #fff; position: relative; display: inline-block; }
+            .footer-col h4::after { content: ''; display: block; width: 30px; height: 2px; background: var(--color-red); margin-top: 8px; }
+            .footer-col ul li { margin-bottom: 12px; }
+            .footer-col a { color: #888; transition: 0.3s; font-size: 0.85rem; display: inline-block; }
+            .footer-col a:hover { color: var(--color-red); padding-left: 5px; }
+            .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid #111; color: #444; font-size: 0.8rem; }
+
+            .contact-info-item { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; color: #b0b0b0; font-size: 0.85rem; line-height: 1.4; }
+            .contact-info-item i { color: var(--color-red); font-size: 1.1rem; flex-shrink: 0; }
+            .contact-info-item .email-text { font-size: clamp(0.6rem, 4vw, 0.85rem); white-space: nowrap; }
+            .contact-info-item a { display: flex; align-items: center; gap: 10px; margin: 0; }
+            .contact-info-item a:hover { padding-left: 0; }
+
+            .social-links { list-style: none; padding: 0; margin: 0; }
+            .social-links li { margin-bottom: 12px; }
+            .social-links a { display: flex; align-items: center; gap: 8px; color: #b0b0b0; font-size: 0.85rem; transition: transform 0.3s ease, color 0.3s ease; }
+            .social-links a i { color: var(--color-red); font-size: 1.2rem; }
+            .social-links a:hover { color: var(--color-white); transform: translateX(5px); padding-left: 0; }
+
+            @media (min-width: 1024px) {
+                .footer-col:last-child { padding-left: 60px; }
+            }
+
+            /* =========================================
+            11. MODAIS (VÍDEO E TRIAGEM) E TOAST
+            ========================================= */
+            .video-modal, .triage-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); backdrop-filter: blur(10px); z-index: 20000; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.5s ease; }
+            .video-modal.active, .triage-modal.active { display: flex; }
+            .video-modal.show, .triage-modal.show { opacity: 1; }
+
+            .modal-content-wrapper { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; padding: 20px;}
+            .modal-video-container { width: 100%; max-width: 480px; aspect-ratio: 480 / 848; background: #000; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(229, 9, 20, 0.6), 0 0 60px rgba(229, 9, 20, 0.3); border: 2px solid var(--color-red); border-radius: 12px; overflow: hidden; position: relative; }
+            @media (min-width: 768px) { .modal-video-container { max-height: 85vh; width: auto; } }
+            .modal-video-container video { width: 100%; height: 100%; object-fit: contain; }
+            
+            .close-btn { position: absolute; top: 15px; right: 15px; color: #fff; font-size: 1.5rem; cursor: pointer; background: var(--color-red); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; z-index: 20001; box-shadow: 0 0 15px rgba(229, 9, 20, 0.4); }
+            .close-btn:hover { background: var(--color-red-dark); transform: rotate(90deg) scale(1.1); box-shadow: 0 0 20px rgba(229, 9, 20, 0.7); }
+
+            /* MODAL TRIAGEM TYPEFORM - ESTILOS E RADIOS CUSTOMIZADOS */
+            .triage-form-container { background: linear-gradient(145deg, #121212, #0a0a0a); padding: 40px 35px; border-radius: 24px; max-width: 500px; width: 100%; border: 1px solid rgba(229, 9, 20, 0.2); box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(229, 9, 20, 0.15); position: relative; z-index: 20001; max-height: 85vh; overflow-y: auto; scrollbar-width: none; }
+            .triage-form-container::-webkit-scrollbar { display: none; }
+            
+            .progress-container { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-bottom: 30px; overflow: hidden;}
+            .progress-bar { height: 100%; width: 0%; background: var(--color-red); transition: width 0.4s ease; border-radius: 10px;}
+
+            .triage-header { text-align: left; margin-bottom: 20px; }
+            .triage-header h3 { font-size: 1.5rem; color: var(--color-white); margin-bottom: 5px; }
+            .triage-header p { font-size: 0.85rem; color: var(--color-text-muted); }
+            
+            .form-step { display: none; opacity: 0; }
+            .form-step.active { display: block; animation: fadeInStep 0.5s ease forwards; }
+            
+            @keyframes fadeInStep {
+                from { opacity: 0; transform: translateX(20px); }
+                to { opacity: 1; transform: translateX(0); }
+            }
+
+            .triage-form-group { margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px; }
+            .triage-form-group > label { font-size: 1.1rem; font-weight: 700; color: var(--color-white); line-height: 1.4; margin-bottom: 5px; }
+            
+            .triage-form-group input[type="text"] { width: 100%; padding: 16px 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.3); color: #fff; font-family: var(--font-main); font-size: 1.1rem; transition: all 0.3s ease; }
+            .triage-form-group input[type="text"]:focus { border-color: var(--color-red); background: rgba(255,255,255,0.05); box-shadow: 0 0 15px rgba(229, 9, 20, 0.2); outline: none; }
+            .triage-form-group input[type="text"]::placeholder { color: rgba(255,255,255,0.2); font-size: 1rem;}
+
+            /* Opções Clicáveis */
+            .custom-radio-group { display: flex; flex-direction: column; gap: 10px; }
+            .custom-radio-group input[type="radio"] { display: none; }
+            .custom-radio-group label {
+                display: block;
+                padding: 16px 20px;
+                border-radius: 12px;
+                border: 1px solid rgba(255,255,255,0.1);
+                background: rgba(0,0,0,0.3);
+                color: #fff;
+                font-family: var(--font-main);
+                font-size: 1.1rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                text-align: left;
+            }
+            .custom-radio-group label:hover { background: rgba(255,255,255,0.05); border-color: rgba(229, 9, 20, 0.5); }
+            .custom-radio-group input[type="radio"]:checked + label {
+                background: rgba(229, 9, 20, 0.15);
+                border-color: var(--color-red);
+                box-shadow: 0 0 15px rgba(229, 9, 20, 0.2);
+                font-weight: 600;
+            }
+
+            .triage-navigation { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px;}
+            .btn-prev { background: transparent; color: #888; border: none; font-family: var(--font-main); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s; font-size: 0.85rem; padding: 10px 0;}
+            .btn-prev:hover { color: #fff; }
+            .btn-next, .triage-submit-btn { padding: 12px 30px; font-size: 0.9rem; }
+
+            .toast-container { position: fixed; top: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; gap: 10px; }
+            .toast { background: var(--color-red); color: #fff; padding: 15px 25px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); font-weight: 600; font-size: 0.9rem; transform: translateX(120%); transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); display: flex; align-items: center; gap: 10px; }
+            .toast.show { transform: translateX(0); }
+
+            /* =========================================
+            12. RESPONSIVIDADE
+            ========================================= */
+            @media (max-width: 1024px) {
+                .main-nav-desktop { display: none; }
+                .main-nav-mobile { display: flex; justify-content: space-between; align-items: center; width: 100%; } 
+                .menu-toggle { display: block; }
+            }
+            @media (max-width: 768px) {
+                h1 { font-size: 2.2rem; } h2 { font-size: 1.8rem; margin-bottom: 40px; }
+                .hero-cta-buttons { flex-direction: column; width: 100%; } .btn { width: 100%; max-width: 100%; }
+                .slider-container { padding: 40px 20px; } .slide p { font-size: 1rem; }
+                .cta-final { margin: 60px 15px; padding: 50px 20px; }
+                .site-header { height: var(--header-height-mobile); padding: 0 15px; } .logo img { height: 40px; } .container { padding: 0 20px; }
+                .quem-somos-grid { grid-template-columns: 1fr; gap: 80px; }
+                .perfil-card { position: relative; background: transparent; padding: 0; bottom: auto; margin-top: -20px; border-bottom: none; }
+                .perfil-block-img { -webkit-mask-image: none; mask-image: none; }
+                .gallery-item { flex: 0 0 85vw; width: 85vw; } .gallery-btn { display: none; }
+                
+                /* Ajustado botão flutuante mobile igual planilhas */
+                .whatsapp-float { width: 55px; height: 55px; font-size: 28px; bottom: 20px; right: 20px; }
+                .whatsapp-float::before { display: none; }
+                
+                .slider-btn { width: 35px; height: 35px; font-size: 1rem; } .prev-btn { left: -10px; } .next-btn { right: -10px; }
+                .triage-form-container { padding: 30px 20px; }
+                .triage-form-group > label { font-size: 1rem; }
+            }
+        </style>
+    
+    <!-- SEO AVANÇADO E SCHEMA.ORG -->
+    <meta name="robots" content="index, follow">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Descomplicando o Movimento">
+    <meta name="twitter:description" content="Treino com base em ciência e biomecânica.">
+    <meta name="twitter:image" content="https://descomplicandoomovimento.netlify.app/assets/logo.jpeg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HealthAndBeautyBusiness",
+      "name": "Descomplicando o Movimento",
+      "image": "https://descomplicandoomovimento.netlify.app/assets/logo.jpeg",
+      "@id": "",
+      "url": "https://descomplicandoomovimento.netlify.app/",
+      "telephone": "",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "BR"
+      }
+    }
+    </script>
+</head>
+
+    <body>
+
+        <header class="site-header" id="header">
+            <div class="container">
+                
+                <nav class="main-nav-desktop">
+                    <div class="nav-left">
+                        <ul class="nav-menu">
+                            <li><a href="#inicio">Início</a></li>
+                            <li><a href="mentoria.html">Mentoria</a></li>
+                            <li><a href="consultoria.html">Consultoria</a></li>
+                            <li><a href="planilhas.html">Planilhas</a></li> 
+                        </ul>
+                    </div>
+                    <div class="logo">
+                        <a href="#inicio">
+                            <img src="assets/logo.png" alt="Logo Descomplicando o Movimento">
+                        </a>
+                    </div>
+                    <div class="nav-right">
+                        <ul class="nav-menu">
+                            <li><a href="https://www.instagram.com/descomplicando_omovimento" target="_blank">Instagram</a></li>
+                        </ul>
+                        <a href="#" class="btn btn-primary whatsapp-triage-btn"><i class="fab fa-whatsapp"></i> Falar</a>
+                    </div>
+                </nav>
+
+                <nav class="main-nav-mobile">
+                    <div class="logo">
+                        <a href="#inicio">
+                            <img src="assets/logo.png" alt="Logo Descomplicando o Movimento">
+                        </a>
+                    </div>
+                    <button class="menu-toggle" aria-label="Abrir menu mobile" aria-label="Abrir menu" aria-expanded="false">
+                        <span></span><span></span><span></span>
+                    </button>
+                </nav>
+            </div>
+
+            <ul class="nav-menu-mobile" aria-hidden="true">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="mentoria.html">Mentoria</a></li>
+                <li><a href="consultoria.html">Consultoria</a></li>
+                <li><a href="planilhas.html">Planilhas</a></li> 
+                <li><a href="https://www.instagram.com/descomplicando_omovimento" target="_blank">Instagram</a></li>
+                <li><a href="#" class="btn btn-primary whatsapp-triage-btn">Falar com a equipe</a></li>
+            </ul>
+        </header>
+
+        <main>
+            <section class="hero" id="inicio">
+                <video src="assets/background.mp4" id="hero-video" class="video-player" autoplay loop muted playsinline webkit-playsinline disablePictureInPicture preload="auto" poster="assets/poster-video.jpg"></video>
+                <div class="video-overlay"></div>
+                
+                <div class="hero-content reveal active">
+                    <div class="container">
+                        <h1>Movimento é ciência,<br> não achismo.</h1>
+                        <p>Treine com base em evidências científicas. Adrian Farias e Lucas Nunes descomplicam a biomecânica para gerar resultados reais.</p>
+                        
+                        <div class="hero-cta-buttons">
+                            <a href="#servicos" class="btn btn-primary scroll-link">Ver Planos</a>
+                            
+                            <button id="open-modal-btn" class="btn-play-pulse">
+                                <div class="play-icon-circle"><i class="fas fa-play"></i></div>
+                                <span>Ver em Ação</span>
+                            </button>
+                        </div>
+
+                        <div class="volume-control-center" id="mute-unmute-btn">
+                            <div class="btn-volume-round" aria-label="Som">
+                                <i class="fas fa-volume-off"></i>
+                            </div>
+                            <span class="volume-label">Ativar Som</span>
+                        </div>
+
+                    </div>
+                </div>
+                
+            </section>
+
+            <section class="quem-somos" id="quem-somos">
+                <div class="container">
+                    <h2 class="reveal">Quem Somos</h2>
+                    
+                    <div class="quem-somos-grid">
+                        <div class="perfil-block reveal stagger-delay-1">
+                            <img src="assets/lucas.png" alt="Lucas Campestrini Nunes" class="perfil-block-img">
+                            <div class="perfil-card">
+                                <h3>Lucas Campestrini Nunes</h3>
+                                <span class="cref">CREF SC- 041598</span>
+                                <p>Graduado pela UNIVALI, especialista em biomecânica. Traduz a ciência complexa em prática eficiente para hipertrofia.</p>
+                            </div>
+                        </div>
+
+                        <div class="perfil-block reveal stagger-delay-2">
+                            <img src="assets/adrian.png" alt="Adrian Farias" class="perfil-block-img">
+                            <div class="perfil-card">
+                                <h3>Adrian Farias</h3>
+                                <span class="cref">CREF SC- 039930</span>
+                                <p>Referência em postura e treinamento feminino. Une olhar técnico e sensibilidade para execução perfeita.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="empresa-card reveal">
+                        <img src="assets/logo.png" alt="Descomplicando o Movimento" class="perfil-logo">
+                        <h3>Metodologia Exclusiva</h3>
+                        <p>Não é só sobre levantar peso. É sobre entender a alavanca, o torque e a anatomia. Criamos profissionais mais preparados e alunos com resultados sólidos.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="testimonial-section" id="depoimentos">
+                <div class="container">
+                    <h2 class="reveal">Resultados Reais</h2>
+                    
+                    <p class="gallery-instruction reveal"><i class="fas fa-arrows-left-right"></i> Arraste para ver as transformações</p>
+                    
+                    <div class="gallery-wrapper reveal">
+                        <button class="gallery-btn gallery-prev" aria-label="Anterior" id="gallery-prev"><i class="fas fa-chevron-left"></i></button>
+                        <div class="gallery-carousel" id="gallery-carousel">
+                            <div class="gallery-item"><img src="assets/antesedepois1.png" alt="Resultado 1" loading="lazy"></div>
+                            <div class="gallery-item"><img src="assets/antesedepois2.png" alt="Resultado 2" loading="lazy"></div>
+                            <div class="gallery-item"><img src="assets/antesedepois3.PNG" alt="Resultado 3" loading="lazy"></div>
+                            <div class="gallery-item"><img src="assets/antesedepois4.png" alt="Resultado 4" loading="lazy"></div>
+                            <div class="gallery-item"><img src="assets/antesedepois5.png" alt="Resultado 5" loading="lazy"></div>
+                            <div class="gallery-item"><img src="assets/antesedepois6.png" alt="Resultado 6" loading="lazy"></div>
+                            <div class="gallery-item"><img src="assets/antesedepois7.jpeg" alt="Resultado 7" loading="lazy"></div>
+                        </div>
+                        <button class="gallery-btn gallery-next" aria-label="Próximo" id="gallery-next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+
+                    <h3 class="reveal" style="text-align: center; margin-top: 80px; margin-bottom: 40px;">O que dizem nossos alunos</h3>
+                    
+                    <div class="slider-container reveal">
+                        <div class="testimonial-slider">
+                            
+                            <div class="slide active-slide">
+                                <i class="fas fa-quote-left"></i>
+                                <p>"Iniciei a consultoria devido ao meu problema de hérnia de disco. Estou com o time há pouco mais de 1 ano e não sinto mais dor. Consigo ter uma rotina de treino intensa. É um dos melhores investimentos que faço."</p>
+                                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                <div class="testimonial-profile">
+                                    <img src="assets/LEANDRO CONSULTORIA.png" alt="Foto Aluno" class="profile-pic" loading="lazy">
+                                    <div class="profile-info"><span class="profile-name">Leandro</span></div>
+                                </div>
+                            </div>
+
+                            <div class="slide">
+                                <i class="fas fa-quote-left"></i>
+                                <p>"O que me fez decidir pela assessoria foi o domínio que o Adrian e o Lucas têm sobre o assunto. Ter vídeos explicando a execução de cada exercício me deixou tranquila e segura para treinar."</p>
+                                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                <div class="testimonial-profile">
+                                    <img src="assets/JOANA CONSULTORIA.png" alt="Foto Aluna" class="profile-pic" loading="lazy">
+                                    <div class="profile-info"><span class="profile-name">Joana</span></div>
+                                </div>
+                            </div>
+
+                            <div class="slide">
+                                <i class="fas fa-quote-left"></i>
+                                <p>"Antes de vocês, meus treinos eram de qualquer jeito, e eu vivia me machucando porque sentia dor na lombar! Hoje tenho profissionais incríveis que sabem o que estão fazendo."</p>
+                                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                <div class="testimonial-profile">
+                                    <img src="assets/ROSEANE CONSULTORIA.png" alt="Foto Aluna" class="profile-pic" loading="lazy">
+                                    <div class="profile-info"><span class="profile-name">Roseane</span></div>
+                                </div>
+                            </div>
+
+                            <div class="slide">
+                                <i class="fas fa-quote-left"></i>
+                                <p>"Gostaria de deixar registrado minha satisfação de ter escolhido uma consultoria para melhor evolução nos meus treinos! Vocês são ótimos! Estava desanimada e desmotivada na verdade. E foi a melhor escolha!!"</p>
+                                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                <div class="testimonial-profile">
+                                    <img src="assets/ANA CONSULTORIA.png" alt="Foto Aluna" class="profile-pic" loading="lazy">
+                                    <div class="profile-info"><span class="profile-name">Ana</span></div>
+                                </div>
+                            </div>
+
+                            <div class="slide">
+                                <i class="fas fa-quote-left"></i>
+                                <p>"Antes eu treinava de qualquer jeito e sentia dor na lombar. Hoje tenho cuidados por profissionais incríveis. O diferencial é o atendimento e a ciência aplicada em cada exercício."</p>
+                                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                <div class="testimonial-profile">
+                                    <img src="assets/ISRAELA CONSULTORIA.png" alt="Foto Aluna" class="profile-pic" loading="lazy">
+                                    <div class="profile-info"><span class="profile-name">Israela</span></div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="servicos" id="servicos">
+                <div class="container">
+                    <h2 class="reveal">Nossos Serviços</h2>
+                    <div class="services-grid">
+                        
+                        <div class="servico-card reveal stagger-delay-1">
+                            <div class="icon-box"><i class="fas fa-chalkboard-user"></i></div>
+                            <h3>Mentoria Pro</h3>
+                            <p>Formação continuada em biomecânica e cinesiologia. Eleve seu nível técnico profissional.</p>
+                            <a href="mentoria.html" class="btn">Saiba Mais</a> 
+                        </div>
+                        
+                        <div class="servico-card reveal stagger-delay-2">
+                            <div class="icon-box"><i class="fas fa-dumbbell"></i></div>
+                            <h3>Consultoria Online</h3>
+                            <p>Programas 100% individualizados. Treino ajustado à sua realidade e objetivo.</p>
+                            <a href="consultoria.html" class="btn">Começar Agora</a> 
+                        </div>
+                        
+                        <div class="servico-card reveal stagger-delay-3">
+                            <div class="icon-box"><i class="fas fa-file-excel"></i></div>
+                            <h3>Planilhas de Treino</h3>
+                            <p>Periodização estruturada pronta para uso. Evidência científica sem achismos.</p>
+                            <a href="planilhas.html" class="btn">Ver Planilhas</a> 
+                        </div>
+                        
+                        <div class="servico-card reveal stagger-delay-4">
+                            <div class="icon-box"><i class="fab fa-youtube"></i></div>
+                            <h3>Canal Gratuito</h3>
+                            <p>Conteúdo denso sobre técnica, execução e bastidores dos treinos no YouTube.</p>
+                            <a href="https://youtube.com/@descomplicandoomovimento" class="btn" target="_blank">Inscrever-se</a>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="cta-final reveal" id="contato">
+                <div class="container">
+                    <h2>Ciência aplicada ao movimento.<br>Resultados reais.</h2>
+                    <br>
+                    <a href="#" class="btn btn-primary whatsapp-triage-btn"><i class="fab fa-whatsapp"></i> Falar com a equipe</a>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <img src="assets/logo.png" alt="Logo" class="footer-logo" style="width:150px; opacity: 0.9;">
+                        <p style="margin-top: 15px; font-size: 0.9rem;">Descomplicando o Movimento © 2025<br>Todos os direitos reservados.</p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Navegação</h4>
+                        <ul>
+                            <li><a href="#inicio">Início</a></li>
+                            <li><a href="#servicos">Serviços</a></li>
+                            <li><a href="planilhas.html">Planilhas</a></li> 
+                            <li><a href="#depoimentos">Depoimentos</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h4>Contato</h4>
+                        
+                        <div class="contact-info-item">
+                            <i class="fas fa-envelope"></i> 
+                            <span class="email-text">descomplicandoomovimento@gmail.com</span>
+                        </div>
+                        
+                        <div class="contact-info-item">
+                            <a href="https://wa.me/5547999382595" target="_blank">
+                                <i class="fab fa-whatsapp"></i> WhatsApp: (47) 99938-2595
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="footer-col">
+                        <h4>Siga-nos</h4>
+                        <ul class="social-links">
+                            <li>
+                                <a href="https://www.instagram.com/descomplicando_omovimento" target="_blank">
+                                    <i class="fab fa-instagram"></i> @descomplicando_omovimento
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+        <div id="video-modal" class="video-modal" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
+            <div class="modal-content-wrapper">
+                <span class="close-btn" aria-label="Fechar" id="close-modal-btn" role="button" aria-label="Fechar">&times;</span>
+                <div class="modal-video-container">
+                    <video src="assets/background.mp4" id="modal-video-player" loop playsinline controls></video>
+                </div>
+            </div>
+        </div>
+
+        <div id="triage-modal" class="triage-modal" role="dialog" aria-modal="true" aria-hidden="true">
+            <div class="modal-content-wrapper">
+                <div class="triage-form-container">
+                    <span class="close-btn" aria-label="Fechar" id="close-triage-btn">&times;</span>
+                    
+                    <div class="triage-header">
+                        <h3>Atendimento Rápido</h3>
+                        <p>Conta pra gente um pouco sobre você.</p>
+                    </div>
+
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+                    
+                    <form id="triage-form">
+                        
+                        <div class="form-step active">
+                            <div class="triage-form-group">
+                                <label for="triage-nome">1. Qual é o seu nome?</label>
+                                <input type="text" id="triage-nome" placeholder="Digite seu nome" required>
+                            </div>
+                        </div>
+
+                        <div class="form-step">
+                            <div class="triage-form-group">
+                                <label>2. Qual é seu principal objetivo hoje?</label>
+                                <div class="custom-radio-group">
+                                    <input type="radio" id="obj1" name="triage-objetivo" value="Emagrecimento" required>
+                                    <label for="obj1">Emagrecimento</label>
+                                    
+                                    <input type="radio" id="obj2" name="triage-objetivo" value="Hipertrofia">
+                                    <label for="obj2">Hipertrofia (Ganho de Massa)</label>
+                                    
+                                    <input type="radio" id="obj3" name="triage-objetivo" value="Condicionamento físico">
+                                    <label for="obj3">Condicionamento Físico</label>
+                                    
+                                    <input type="radio" id="obj4" name="triage-objetivo" value="Reabilitação / Dor">
+                                    <label for="obj4">Reabilitação / Alívio de Dores</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-step">
+                            <div class="triage-form-group">
+                                <label>3. Você já treina atualmente?</label>
+                                <div class="custom-radio-group">
+                                    <input type="radio" id="treina1" name="triage-treina" value="Sim" required>
+                                    <label for="treina1">Sim, já treino</label>
+                                    
+                                    <input type="radio" id="treina2" name="triage-treina" value="Não">
+                                    <label for="treina2">Não, estou parado(a)</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-step">
+                            <div class="triage-form-group">
+                                <label>4. O que você está buscando?</label>
+                                <div class="custom-radio-group">
+                                    <input type="radio" id="busca1" name="triage-busca" value="Consultoria personalizada" required>
+                                    <label for="busca1">Consultoria Personalizada</label>
+                                    
+                                    <input type="radio" id="busca2" name="triage-busca" value="Mentoria">
+                                    <label for="busca2">Mentoria PRO</label>
+                                    
+                                    <input type="radio" id="busca3" name="triage-busca" value="Planilha de treino">
+                                    <label for="busca3">Planilhas de Treino</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="triage-navigation">
+                            <button type="button" class="btn-prev" id="btn-prev" style="display: none;"><i class="fas fa-arrow-left"></i> Voltar</button>
+                            <button type="button" class="btn btn-primary btn-next" id="btn-next">Próximo <i class="fas fa-arrow-right"></i></button>
+                            <button type="submit" class="btn btn-primary triage-submit-btn" id="btn-submit" style="display: none;">Ir para WhatsApp <i class="fab fa-whatsapp"></i></button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <a href="#" class="whatsapp-float whatsapp-triage-btn">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+
+        <div class="toast-container" id="toast-container"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // 1. SCROLL REVEAL
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+                reveals.forEach((reveal) => {
+                    const elementTop = reveal.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - 50) {
+                        reveal.classList.add('active');
+                    }
+                });
+            };
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll();
+
+            // 2. HEADER EFFECT
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                const isMenuOpen = header.classList.contains('menu-open-bg');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    if (!isMenuOpen) {
+                        header.classList.remove('scrolled');
+                    }
+                }
+            });
+
+            // 3. MENU MOBILE LOGIC
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navMenuMobile = document.querySelector('.nav-menu-mobile');
+            if (menuToggle && navMenuMobile) {
+                menuToggle.addEventListener('click', function() {
+                    const isActive = menuToggle.classList.toggle('active');
+                    navMenuMobile.classList.toggle('active');
+                    navMenuMobile.setAttribute('aria-hidden', !isActive);
+                    document.body.classList.toggle('modal-open', isActive);
+                    if(isActive) header.classList.add('menu-open-bg');
+                    else if (window.scrollY <= 50) header.classList.remove('menu-open-bg');
+                    menuToggle.setAttribute('aria-expanded', isActive);
+                });
+                navMenuMobile.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        menuToggle.classList.remove('active');
+                        navMenuMobile.classList.remove('active');
+                        navMenuMobile.setAttribute('aria-hidden', 'true');
+                        document.body.classList.remove('modal-open');
+                        if (window.scrollY <= 50) header.classList.remove('menu-open-bg');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    });
+                });
+            }
+
+            // 4. CONTROLE VÍDEO HERO (ATUALIZADO PARA MOBILE AUTOPLAY)
+            const muteUnmuteBtn = document.getElementById('mute-unmute-btn');
+            const heroVideo = document.getElementById('hero-video');
+            
+            if (heroVideo) {
+                // Garante que o vídeo está mudo desde o início (exigência para autoplay mobile)
+                heroVideo.muted = true;
+                heroVideo.defaultMuted = true;
+                
+                // Tenta dar o play automático
+                let playPromise = heroVideo.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.log("Autoplay bloqueado pelo celular. Aguardando interação do usuário.");
+                        // Se o celular bloquear, força o play no primeiro toque do usuário na tela
+                        document.body.addEventListener('touchstart', function() {
+                            if (heroVideo.paused) {
+                                heroVideo.play().catch(() => {});
+                            }
+                        }, { once: true });
+                    });
+                }
+
+                // Lógica do botão de volume
+                if (muteUnmuteBtn) {
+                    muteUnmuteBtn.addEventListener('click', () => {
+                        heroVideo.muted = !heroVideo.muted;
+                        const icon = muteUnmuteBtn.querySelector('i');
+                        const label = muteUnmuteBtn.querySelector('.volume-label');
+                        if (heroVideo.muted) {
+                            icon.className = 'fas fa-volume-off';
+                            if(label) label.textContent = "Ativar Som";
+                        } else {
+                            icon.className = 'fas fa-volume-up';
+                            if(label) label.textContent = "Mutar";
+                        }
+                    });
+                }
+            }
+
+            // 5. MODAL VÍDEO
+            const modalVideo = document.getElementById('video-modal');
+            const openBtnVideo = document.getElementById('open-modal-btn');
+            const closeBtnVideo = document.getElementById('close-modal-btn');
+            const modalVideoPlayer = document.getElementById('modal-video-player');
+
+            const closeModalVideo = () => {
+                if(modalVideoPlayer) {
+                    modalVideoPlayer.pause();
+                    modalVideoPlayer.currentTime = 0; 
+                }
+                modalVideo.classList.remove('show');
+                setTimeout(() => {
+                    modalVideo.classList.remove('active');
+                    document.body.classList.remove('modal-open');
+                    if(heroVideo) {
+                        heroVideo.muted = true;
+                        heroVideo.play().catch(() => {});
+                    }
+                }, 500);
+            }
+            
+            if (openBtnVideo && modalVideo && modalVideoPlayer) {
+                openBtnVideo.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    modalVideo.classList.add('active'); 
+                    setTimeout(() => modalVideo.classList.add('show'), 10);
+                    document.body.classList.add('modal-open');
+                    if(heroVideo) heroVideo.pause();
+                    modalVideoPlayer.src = heroVideo.src;
+                    modalVideoPlayer.load();
+                    modalVideoPlayer.currentTime = 0;
+                    modalVideoPlayer.volume = 1.0; 
+                    modalVideoPlayer.muted = false; 
+                    modalVideoPlayer.play().catch(e => { modalVideoPlayer.controls = true; });
+                });
+                closeBtnVideo.addEventListener('click', closeModalVideo);
+            }
+
+            // 6. SISTEMA DE TOAST
+            function showToast(message) {
+                const container = document.getElementById('toast-container');
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+                container.appendChild(toast);
+                
+                setTimeout(() => toast.classList.add('show'), 10);
+                
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => toast.remove(), 400); 
+                }, 3500);
+            }
+
+            // ==========================================
+            // 7. LÓGICA DO TYPEFORM (PASSO A PASSO) E RADIOS
+            // ==========================================
+            const triageModal = document.getElementById('triage-modal');
+            const closeTriageBtn = document.getElementById('close-triage-btn');
+            const triageBtns = document.querySelectorAll('.whatsapp-triage-btn');
+            const triageForm = document.getElementById('triage-form');
+            
+            const steps = Array.from(document.querySelectorAll('.form-step'));
+            const btnNext = document.getElementById('btn-next');
+            const btnPrev = document.getElementById('btn-prev');
+            const btnSubmit = document.getElementById('btn-submit');
+            const progressBar = document.getElementById('progress-bar');
+            let currentStep = 0;
+
+            const closeTriageModal = () => {
+                triageModal.classList.remove('show');
+                setTimeout(() => {
+                    triageModal.classList.remove('active');
+                    if(!modalVideo?.classList.contains('active')) {
+                        document.body.classList.remove('modal-open');
+                    }
+                    currentStep = 0;
+                    updateFormUI();
+                    triageForm.reset();
+                }, 400);
+            }
+
+            triageBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    currentStep = 0;
+                    updateFormUI();
+                    triageModal.classList.add('active');
+                    setTimeout(() => triageModal.classList.add('show'), 10);
+                    document.body.classList.add('modal-open');
+                });
+            });
+
+            if(closeTriageBtn) closeTriageBtn.addEventListener('click', closeTriageModal);
+
+            window.addEventListener('click', (e) => { 
+                if (e.target === modalVideo || e.target.classList.contains('modal-content-wrapper') && modalVideo.classList.contains('active')) closeModalVideo(); 
+                if (e.target === triageModal || (e.target.classList.contains('modal-content-wrapper') && triageModal.classList.contains('active'))) closeTriageModal();
+            });
+
+            // Controle da UI dos Passos
+            function updateFormUI() {
+                steps.forEach((step, index) => {
+                    step.classList.toggle('active', index === currentStep);
+                });
+
+                const progressPercentage = ((currentStep + 1) / steps.length) * 100;
+                progressBar.style.width = `${progressPercentage}%`;
+
+                btnPrev.style.display = currentStep === 0 ? 'none' : 'block';
+
+                if (currentStep === steps.length - 1) {
+                    btnNext.style.display = 'none';
+                    btnSubmit.style.display = 'block';
+                } else {
+                    btnNext.style.display = 'block';
+                    btnSubmit.style.display = 'none';
+                }
+
+                const currentInput = steps[currentStep].querySelector('input[type="text"]');
+                // Só dá o focus (que abre o teclado) automaticamente se estiver no computador
+                if (currentInput && window.innerWidth > 768) setTimeout(() => currentInput.focus(), 100);
+            }
+
+            // Validação inteligente (verifica texto ou radio clicado)
+            function validateCurrentStep() {
+                const currentStepEl = steps[currentStep];
+                
+                // Valida campo de texto
+                const textInput = currentStepEl.querySelector('input[type="text"]');
+                if (textInput && textInput.hasAttribute('required') && !textInput.value.trim()) {
+                    return false;
+                }
+                
+                // Valida os novos radios customizados
+                const radioGroup = currentStepEl.querySelector('.custom-radio-group');
+                if (radioGroup) {
+                    const checkedRadio = radioGroup.querySelector('input[type="radio"]:checked');
+                    if (!checkedRadio) return false;
+                }
+
+                return true;
+            }
+
+            btnNext.addEventListener('click', () => {
+                if (validateCurrentStep()) {
+                    currentStep++;
+                    updateFormUI();
+                } else {
+                    showToast("Por favor, selecione uma opção ou preencha o campo.");
+                }
+            });
+
+            btnPrev.addEventListener('click', () => {
+                currentStep--;
+                updateFormUI();
+            });
+
+            // Avançar automaticamente ao clicar num Radio Button
+            const customRadios = document.querySelectorAll('.custom-radio-group input[type="radio"]');
+            customRadios.forEach(radio => {
+                radio.addEventListener('change', () => {
+                    // Pequeno delay para o usuário ver que clicou
+                    setTimeout(() => {
+                        if (currentStep < steps.length - 1) {
+                            btnNext.click();
+                        }
+                    }, 350); 
+                });
+            });
+
+            triageForm.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (currentStep < steps.length - 1) {
+                        btnNext.click();
+                    } else {
+                        if (validateCurrentStep()) {
+                            btnSubmit.click();
+                        } else {
+                            showToast("Por favor, selecione uma opção ou preencha o campo.");
+                        }
+                    }
+                }
+            });
+
+            // 8. ENVIO DO FORMULÁRIO DE TRIAGEM FORMATADO (Sem números)
+            triageForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                if (!validateCurrentStep()) {
+                    showToast("Preencha esta informação antes de enviar.");
+                    return;
+                }
+
+                const nome = document.getElementById('triage-nome').value.trim();
+                const objetivo = document.querySelector('input[name="triage-objetivo"]:checked')?.value;
+                const treina = document.querySelector('input[name="triage-treina"]:checked')?.value;
+                const busca = document.querySelector('input[name="triage-busca"]:checked')?.value;
+
+                // MENSAGEM LIMPA, SEM OS NÚMEROS
+                const mensagem = `Olá, equipe Descomplicando o Movimento!\n\n` +
+                                `*Nome:* ${nome}\n` +
+                                `*Principal objetivo:* ${objetivo}\n` +
+                                `*Já treina atualmente?* ${treina}\n` +
+                                `*Estou buscando:* ${busca}`;
+
+                closeTriageModal();
+                
+                const numeroWhatsapp = "5547999382595"; 
+                const url = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensagem)}`;
+                
+                window.open(url, '_blank');
+            });
+
+            // 9. GALERIA DE RESULTADOS E OUTROS
+            const galleryCarousel = document.getElementById('gallery-carousel');
+            const galleryPrev = document.getElementById('gallery-prev');
+            const galleryNext = document.getElementById('gallery-next');
+            if(galleryCarousel && galleryPrev && galleryNext) {
+                galleryNext.addEventListener('click', () => { galleryCarousel.scrollBy({ left: 300, behavior: 'smooth' }); });
+                galleryPrev.addEventListener('click', () => { galleryCarousel.scrollBy({ left: -300, behavior: 'smooth' }); });
+                
+                let isDown = false; let startX; let scrollLeft;
+                galleryCarousel.addEventListener('mousedown', (e) => { isDown = true; galleryCarousel.classList.add('active'); startX = e.pageX - galleryCarousel.offsetLeft; scrollLeft = galleryCarousel.scrollLeft; });
+                galleryCarousel.addEventListener('mouseleave', () => { isDown = false; galleryCarousel.classList.remove('active'); });
+                galleryCarousel.addEventListener('mouseup', () => { isDown = false; galleryCarousel.classList.remove('active'); });
+                galleryCarousel.addEventListener('mousemove', (e) => {
+                    if(!isDown) return;
+                    e.preventDefault();
+                    const x = e.pageX - galleryCarousel.offsetLeft;
+                    const walk = (x - startX) * 2;
+                    galleryCarousel.scrollLeft = scrollLeft - walk;
+                });
+            }
+            
+            // 10. SLIDER DE DEPOIMENTOS
+            const slides = document.querySelectorAll('.testimonial-slider .slide');
+            const nextBtn = document.querySelector('.next-btn');
+            const prevBtn = document.querySelector('.prev-btn');
+            let currentSlide = 0;
+            let autoSlideTimer;
+            function goToSlide(index) {
+                if (slides[currentSlide]) slides[currentSlide].classList.remove('active-slide');
+                currentSlide = (index + slides.length) % slides.length;
+                if (slides[currentSlide]) slides[currentSlide].classList.add('active-slide');
+            }
+            function resetTimer() {
+                clearInterval(autoSlideTimer);
+                autoSlideTimer = setInterval(() => goToSlide(currentSlide + 1), 6000);
+            }
+            if (slides.length > 0) {
+                if (slides[0]) slides[0].classList.add('active-slide'); 
+                if(nextBtn) nextBtn.addEventListener('click', () => { goToSlide(currentSlide + 1); resetTimer(); });
+                if(prevBtn) prevBtn.addEventListener('click', () => { goToSlide(currentSlide - 1); resetTimer(); });
+                resetTimer();
+            }
+
+            document.addEventListener('keydown', (e) => { 
+                if (e.key === 'Escape') {
+                    closeModalVideo();
+                    closeTriageModal();
+                }
+            });
+        });
+    </script>
+    </body>
+    </html>
