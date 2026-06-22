@@ -19,6 +19,12 @@ O **Descomplicando o Movimento** é a landing page oficial e plataforma de servi
 
 ## 🚀 Stack Tecnológica
 
+<div align="center">
+  <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5">
+  <img src="https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3">
+  <img src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" alt="JavaScript">
+</div>
+
 O projeto foi construído propositalmente sem a utilização de frameworks front-end pesados (como React, Angular ou Vue), apostando na velocidade, controle absoluto do DOM e otimização cirúrgica que apenas o desenvolvimento "Vanilla" pode oferecer.
 
 ### 🌐 Estrutura e Marcação
