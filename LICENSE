@@ -1,26 +1,21 @@
+MIT License
+
 Copyright (c) 2024 Jonathan Oliveira e Descomplicando o Movimento
 
-TODOS OS DIREITOS RESERVADOS (ALL RIGHTS RESERVED)
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
----------------------------------------------------------
-1. PROPÓSITO DO REPOSITÓRIO
----------------------------------------------------------
-Este repositório é mantido de forma pública com o único e exclusivo propósito de servir como demonstração de portfólio profissional do desenvolvedor web Jonathan Oliveira.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
----------------------------------------------------------
-2. RESTRIÇÕES DE USO
----------------------------------------------------------
-É estritamente PROIBIDO copiar, clonar, modificar, distribuir, vender ou reutilizar qualquer parte deste código-fonte, design (UI/UX), identidade visual, imagens, textos ou arquitetura para fins comerciais ou pessoais. 
-
-O conteúdo deste projeto é propriedade intelectual exclusiva do desenvolvedor e de seus respectivos clientes. Qualquer uso não autorizado, plágio ou apropriação indevida constitui violação de direitos autorais.
-
----------------------------------------------------------
-3. CONTATO E ORÇAMENTOS (DESENVOLVEDOR)
----------------------------------------------------------
-Gostou do projeto, da arquitetura de código ou da performance do site? 
-
-Se você está buscando um desenvolvedor Front-end para construir a plataforma digital da sua empresa, desenvolver landing pages de alta conversão ou modernizar seus sistemas, entre em contato!
-
-👤 Desenvolvedor: Jonathan Oliveira
-💼 LinkedIn: https://www.linkedin.com/in/jonathan-oliveira-dev/
-🌐 Portfólio: https://jonathan-oliveira-dev.netlify.app/
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
