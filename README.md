@@ -1,5 +1,7 @@
 # Descomplicando o Movimento
 
+![Preview do Projeto](./assets/site.png)
+
 > Movimento é ciência, não achismo. Treine com base em evidências científicas e biomecânica com Adrian Farias e Lucas Nunes.
 
 ## 📝 Descrição do Projeto
@@ -48,7 +50,7 @@ Como o projeto é estático (HTML/CSS/JS puros), não é necessária nenhuma bui
 
 1. **Clone o repositório:**
    ```bash
-   git clone https://github.com/seu-usuario/descomplicando-o-movimento.git
+   git clone https://github.com/Jonhycristian/descomplicando-o-movimento.git
    ```
 2. **Navegue até a pasta do projeto:**
    ```bash
@@ -73,12 +75,6 @@ Como o projeto é estático (HTML/CSS/JS puros), não é necessária nenhuma bui
 
 - Tratando-se de uma aplicação "cliente-side" (estática), a exposição de vulnerabilidades é mínima.
 - Os contatos são direcionados de forma segura e direta via link de WhatsApp.
-
-## 📷 Capturas de Tela
-
-*Inserir imagens do seu projeto abaixo:*
-
-![Hero Section](./assets/site.png)
 
 ## 👨‍💻 Autor
 
