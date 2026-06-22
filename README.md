@@ -86,7 +86,7 @@ Como o projeto é estático (HTML/CSS/JS puros), não é necessária nenhuma bui
 
 - **Desenvolvido por:** Jonathan Oliveira
 - **Cliente:** Descomplicando o Movimento (Adrian Farias e Lucas Nunes)
-- **Links do Projeto:** [Instagram](https://www.instagram.com/descomplicando_omovimento)
+- **Link do Projeto:** [https://descomplicandoomovimento.com/](https://descomplicandoomovimento.com/)
 
 ## 📄 Licença
 
