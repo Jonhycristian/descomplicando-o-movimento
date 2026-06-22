@@ -50,6 +50,10 @@ O projeto foi construído propositalmente sem a utilização de frameworks front
 - **Google Fonts:** Importação assíncrona da fonte primária (Montserrat).
 - **Otimização de Assets:** Técnicas de `loading="lazy"` implementadas programaticamente.
 
+### ☁️ Hospedagem e Distribuição (Deploy)
+- **Netlify:** Plataforma utilizada para o deploy contínuo, servindo os arquivos estáticos com extrema velocidade e CDN global.
+
+
 ## 🛠️ Instalação
 
 Como o projeto é estático (HTML/CSS/JS puros), não é necessária nenhuma build complexa para rodar localmente.
